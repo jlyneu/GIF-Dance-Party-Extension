@@ -1,24 +1,24 @@
 .gdp-bottom-left {
-    position: absolute;
     bottom: 10px;
     left: 10px;
+    position: absolute;
 }
 .gdp-bottom-right {
-    position: absolute;
     bottom: 10px;
+    position: absolute;
     right: 10px;
 }
 .gdp-dancer {
-    position: absolute;
-    display: -moz-inline-stack;
-    display: inline-block;
-    vertical-align: top;
-    left: 0;
-    top: 0;
-    zoom: 1;
-    *display: inline;
     cursor: hand;
     cursor: pointer;
+    *display: inline;
+    display: inline-block;
+    display: -moz-inline-stack;
+    left: 0;
+    position: absolute;
+    top: 0;
+    vertical-align: top;
+    zoom: 1;
 }
 .gdp-flipped {
     transform: scaleX(-1);
