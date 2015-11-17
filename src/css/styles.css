@@ -1,0 +1,47 @@
+.gdp-bottom-left {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+.gdp-bottom-right {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+.gdp-dancer {
+    position: absolute;
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: top;
+    left: 0;
+    top: 0;
+    zoom: 1;
+    *display: inline;
+    cursor: hand;
+    cursor: pointer;
+}
+.gdp-flipped {
+    transform: scaleX(-1);
+}
+.gdp-opt {
+    color: white;
+    display: inline-block;
+}
+.gdp-start {
+    background-color: gray;
+    bottom: 0;
+    color: white;
+    font-size: 16px
+    left: 0;
+    padding: 20px;
+    position: fixed;
+    z-index: 99999999;
+}
+.gdp-top-left {
+    float: left;
+    margin: 10px 0 0 10px;
+}
+.gdp-top-right {
+    float: right;
+    margin: 10px 10px 0 0;
+}

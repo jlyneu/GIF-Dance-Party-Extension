@@ -12,6 +12,9 @@
         "http://*/*",
         "https://*/*"
       ],
+      "css": [
+          "src/css/styles.css"
+      ],
       "js": [
         "src/lib/jquery.js",
         "src/lib/jquery-ui.min.js",

@@ -4,69 +4,6 @@ var frontZIndex = Math.pow(2, 31) - 500;
 /** z-index of back-most GIF */
 var backZIndex = frontZIndex - 1;
 
-/** styles for draggable divs */
-var dancerStyles = {
-    position: 'absolute',
-    display: '-moz-inline-stack',
-    display: 'inline-block',
-    'vertical-align': 'top',
-    left: '0',
-    top: '0',
-    zoom: '1',
-    '*display': 'inline',
-    cursor: 'hand',
-    cursor: 'pointer'
-};
-
-/** styles for dancer options (X, FLIP, RESIZE, etc.) */
-var dancerOptStyles = {
-    color: 'white',
-    display: 'inline-block',
-};
-
-var topLeftStyles = {
-    float: 'left',
-    margin: '10px 0 0 10px'
-};
-
-var topRightStyles = {
-    float: 'right',
-    margin: '10px 10px 0 0'
-};
-
-var bottomLeftStyles = {
-    position: 'absolute',
-    bottom: '10px',
-    left: '10px'
-};
-
-var bottomRightStyles = {
-    position: 'absolute',
-    bottom: '10px',
-    right: '10px'
-};
-
-/** styles for the dancer close button */
-var closeStyles = {
-    position: 'relative',
-    top: '0',
-    left: '0',
-    color: 'white',
-    'text-align': 'left'
-}
-
-/** styles for the START THE PARTY button */
-var startButtonStyles = {
-    'background-color': 'gray',
-    bottom: '0',
-    color: 'white',
-    'font-size': '16px',
-    left: '0',
-    padding: '20px',
-    position: 'fixed',
-    'z-index': '99999999'
-};
-
 /**
  * Set of GIF dancer names and giphy ids
  */
@@ -184,11 +121,9 @@ function getFullSizeGifUrl(gifId) {
 
 function flipImage($image) {
     if ($image.hasClass('gdp-flipped')) {
-        $image.css('transform', 'scaleX(1)')
-            .removeClass('gdp-flipped');
+        $image.removeClass('gdp-flipped');
     } else {
-        $image.css('transform', 'scaleX(-1)')
-            .addClass('gdp-flipped');
+        $image.addClass('gdp-flipped');
     }
 }
 
@@ -197,43 +132,30 @@ function createGIFDancer(dancerName) {
     var gifUrl = getFullSizeGifUrl(gifId);
 
     var gifImg = $('<img class="gdp-resizable" src="' + gifUrl + '" />');
-    var closeDiv = $('<div class="gdp-close gdp-opt">X</div>')
-        .css(dancerOptStyles)
-        .css(topLeftStyles)
+    var closeDiv = $('<div class="gdp-close gdp-opt gdp-top-left">X</div>')
         .click(function() {
             $(this).parent().remove();
         });
-    var flipDiv = $('<div class="gdp-flip gdp-opt">FLIP</div>')
-        .css(dancerOptStyles)
-        .css(topRightStyles)
+    var flipDiv = $('<div class="gdp-flip gdp-opt gdp-top-right">FLIP</div>')
         .click(function() {
             flipImage($(this).parent().find('img'));
         });
-    var backDiv = $('<div class="gdp-back gdp-opt">BACK</div>')
-        .css(dancerOptStyles)
-        .css(topRightStyles)
+    var backDiv = $('<div class="gdp-back gdp-opt gdp-top-right">BACK</div>')
         .click(function() {
             $(this).parent().css('z-index', backZIndex);
             backZIndex--;
         });
-    var frontDiv = $('<div class="gdp-front gdp-opt">FRONT</div>')
-        .css(dancerOptStyles)
-        .css(topRightStyles)
+    var frontDiv = $('<div class="gdp-front gdp-opt gdp-top-right">FRONT</div>')
         .click(function() {
             $(this).parent().css('z-index', frontZIndex);
             frontZIndex++;
         });
-    var cloneDiv = $('<div class="gdp-clone gdp-opt">CLONE</div>')
-        .css(dancerOptStyles)
-        .css(bottomLeftStyles)
+    var cloneDiv = $('<div class="gdp-clone gdp-opt gdp-bottom-left">CLONE</div>')
         .click(function() {
             createGIFDancer(dancerName);
         });
-    var resizeDiv = $('<div class="gdp-resize gdp-opt">RESIZE</div>')
-        .css(dancerOptStyles)
-        .css(bottomRightStyles);
+    var resizeDiv = $('<div class="gdp-resize gdp-opt gdp-bottom-right">RESIZE</div>');
     var dancerDiv = $('<div class="gdp-dancer"></div>')
-        .css(dancerStyles)
         .css('z-index', frontZIndex)
         .append(closeDiv)
         .append(flipDiv)
@@ -262,10 +184,9 @@ function createStartButton() {
     $('body').append('<div class="gdp-start">START THE PARTY</div>');
     $('head').append('<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css"></link>')
     // apply the styles to the start button
-    $('.gdp-start').css(startButtonStyles)
-        .click(function() {
-            createGIFDancer('carlton');
-        });
+    $('.gdp-start').click(function() {
+        createGIFDancer('carlton');
+    });
 }
 
 // kick it all off once the page loads
