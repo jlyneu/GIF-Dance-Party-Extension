@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+
+  "name": "GIF Dance Party Extension",
+  "description": "A Chrome Extension inspired by http://gifdanceparty.giphy.com/",
+  "version": "1.0.0",
+  "icons" : {
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "src/lib/jquery.js",
+        "src/lib/jquery-ui.min.js",
+        "src/lib/jquery-migrate-1.2.1.js",
+        "src/js/script.js"
+      ]
+    }
+  ],
+  "permissions": [
+    "activeTab"
+  ]
+}
