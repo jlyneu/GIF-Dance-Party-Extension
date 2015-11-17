@@ -6,6 +6,11 @@
   "version": "1.0.0",
   "icons" : {
   },
+  "background": {
+    "scripts": [
+        "src/js/background.js"
+    ]
+  },
   "content_scripts": [
     {
       "matches": [

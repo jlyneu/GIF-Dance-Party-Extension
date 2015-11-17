@@ -1,3 +1,7 @@
+.gdp-add-dancer {
+    display: inline-block;
+    padding: 20px;
+}
 .gdp-bottom-left {
     bottom: 10px;
     left: 10px;
@@ -15,7 +19,7 @@
     display: inline-block;
     display: -moz-inline-stack;
     left: 0;
-    position: absolute;
+    position: fixed !important;
     top: 0;
     vertical-align: top;
     zoom: 1;
@@ -23,15 +27,28 @@
 .gdp-flipped {
     transform: scaleX(-1);
 }
+.gdp-menu {
+    background-color: black;
+    bottom: 0;
+    color: white;
+    font-size: 16px;
+    right: 0;
+    position: fixed;
+    z-index: 99999999;
+}
 .gdp-opt {
     color: white;
     display: inline-block;
+}
+.gdp-select-song {
+    display: inline-block;
+    padding: 20px;
 }
 .gdp-start {
     background-color: gray;
     bottom: 0;
     color: white;
-    font-size: 16px
+    font-size: 16px;
     left: 0;
     padding: 20px;
     position: fixed;
