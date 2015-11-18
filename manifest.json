@@ -26,6 +26,7 @@
         "src/lib/jquery.js",
         "src/lib/jquery-ui.min.js",
         "src/lib/jquery-migrate-1.2.1.js",
+        "src/js/media.js",
         "src/js/script.js"
       ]
     }
