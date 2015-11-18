@@ -4,80 +4,6 @@ var frontZIndex = Math.pow(2, 31) - 500;
 /** z-index of back-most GIF */
 var backZIndex = frontZIndex - 1;
 
-/**
- * Set of GIF dancer names and giphy ids
- */
-var gifDancers = {
-    carlton: 'wn8rVP7qC8TNC',
-    pumpGirl: '26BkNiQlYeHc5jpf2'
-};
-
-var gdpPlaylist = [
-    'bazz', 'bubblebutt', 'fatboy', 'grounded',
-    'halffull', 'nahnahnah', 'singalong', 'trololo',
-    'twist', 'walkmen', 'wegotyou'
-];
-
-var thumbnailImgurIds = {
-    '8bitcarlton': 'ifuoPqn',
-    apple: 'wbv3RCd',
-    arnold: 'Sh6WPJs',
-    babe: 'hDWrKI7',
-    banana: 'Li3pOWH',
-    bananabounce: 'Ky3jiGQ',
-    bear: '7KW1zWk',
-    blob: 'P7meKeB',
-    bmo: 'Q6Jyks5',
-    bonebreak: 'otdi7m9',
-    bones: 'WEl9Npv',
-    breakglitch: 'TXYwR2F',
-    brian: 'mcVtWQT',
-    bunny: 'OPfS7wP',
-    bunnyspank: 'G9Bs0N9',
-    business: 'QaSTmdL',
-    cact: 'fn0xLOv',
-    carlton: 'uF179oM',
-    charlie: 'aXXDfwI',
-    chicken: 'Uckh2i8',
-    cowboy: 'sCxQ7om',
-    discoball: 'FqqZgIZ',
-    doggy: 'Q6r1gYp',
-    elvenbooty: '1GZgAQV',
-    fabio: '320x7kR',
-    fatspidey: '5GZYEmt',
-    foreveralone: 'jgOvt9T',
-    fred: 'FSvV7is',
-    fuzzball: 'ehDJ5bp',
-    gene: 'nfO1s5a'
-}
-
-/*
-var dancerNameList = [
-    '8bitcarlton', 'apple', 'arnold', 'babe',
-    'banana', 'bananabounce', 'bear', 'blob',
-    'bmo', 'bonebreak', 'bones', 'breakglitch',
-    'brian', 'bunny', 'bunnyspank', 'business',
-    'cact', 'carlton', 'charlie', 'chicken',
-    'cowboy', 'discoball', 'doggy', 'elvenbooty',
-    'fabio', 'fatspidey', 'foreveralone', 'fred',
-    'fuzzball', 'gene', 'ghosty', 'girlstep',
-    'glitchtwist', 'greenlady', 'greenlady2', 'greything',
-    'headspin', 'hellicopter', 'hipdog', 'hotdogs',
-    'hula', 'humpery', 'jason', 'kirby',
-    'kitty', 'lilguy', 'maranda', 'matrix',
-    'mj', 'momdance', 'morpher', 'nerd',
-    'noshorts', 'nudeflames', 'obama', 'orangeguy',
-    'pa', 'patrick', 'pedopickle', 'pilboy',
-    'pixelly', 'pizza', 'ponyshuffle', 'possum',
-    'pretzel', 'psych', 'pumpgirl', 'ravecat',
-    'robothump', 'roger', 'runningworm', 'saxguy',
-    'scorpion', 'shawty', 'slappy', 'smooch',
-    'speakerhead', 'spinglitch', 'spongeybob', 'squidword',
-    'stripper1', 'stripper2', 'tej', 'thehop',
-    'thewizard', 'theworm', 'tim', 'twerk',
-    'twerk2', 'whiteguy', 'wormlady', 'yeti'
-];*/
-
 function getImgurThumbnailUrl(dancerName) {
     return "https://imgur.com/" + thumbnailImgurIds[dancerName];
 }
@@ -110,7 +36,7 @@ function thePartyIsOff() {
 function startTheParty() {
     createMenu();
     selectSong('singalong');
-    createGIFDancer('pumpGirl');
+    createGIFDancer('carlton');
     $('.gdp-start').text("STOP THE PARTY");
 }
 
@@ -134,43 +60,43 @@ function createGIFDancer(dancerName) {
 
     var gifImg = $('<img class="gdp-resizable" src="' + gifUrl + '" />');
     var closeDiv = $('<div class="gdp-close gdp-opt gdp-top-left">X</div>')
-        .click(function() {
-            $(this).parent().remove();
-        });
+    .click(function() {
+        $(this).parent().remove();
+    });
     var flipDiv = $('<div class="gdp-flip gdp-opt gdp-top-right">FLIP</div>')
-        .click(function() {
-            flipImage($(this).parent().find('img'));
-        });
+    .click(function() {
+        flipImage($(this).parent().find('img'));
+    });
     var backDiv = $('<div class="gdp-back gdp-opt gdp-top-right">BACK</div>')
-        .click(function() {
-            $(this).parent().css('z-index', backZIndex);
-            backZIndex--;
-        });
+    .click(function() {
+        $(this).parent().css('z-index', backZIndex);
+        backZIndex--;
+    });
     var frontDiv = $('<div class="gdp-front gdp-opt gdp-top-right">FRONT</div>')
-        .click(function() {
-            $(this).parent().css('z-index', frontZIndex);
-            frontZIndex++;
-        });
+    .click(function() {
+        $(this).parent().css('z-index', frontZIndex);
+        frontZIndex++;
+    });
     var cloneDiv = $('<div class="gdp-clone gdp-opt gdp-bottom-left">CLONE</div>')
-        .click(function() {
-            createGIFDancer(dancerName);
-        });
+    .click(function() {
+        createGIFDancer(dancerName);
+    });
     var resizeDiv = $('<div class="gdp-resize gdp-opt gdp-bottom-right">RESIZE</div>');
     var dancerDiv = $('<div class="gdp-dancer"></div>')
-        .css('z-index', frontZIndex)
-        .append(closeDiv)
-        .append(flipDiv)
-        .append(backDiv)
-        .append(frontDiv)
-        .append(cloneDiv)
-        .append(resizeDiv)
-        .append(gifImg)
-        .draggable()
-        .hover(function() {
-            $(this).css('background-color', 'rgba(0,0,0,.3)');
-        }, function() {
-            $(this).css('background-color', 'rgba(0,0,0,0)');
-        });
+    .css('z-index', frontZIndex)
+    .append(closeDiv)
+    .append(flipDiv)
+    .append(backDiv)
+    .append(frontDiv)
+    .append(cloneDiv)
+    .append(resizeDiv)
+    .append(gifImg)
+    .draggable()
+    .hover(function() {
+        $(this).css('background-color', 'rgba(0,0,0,.3)');
+    }, function() {
+        $(this).css('background-color', 'rgba(0,0,0,0)');
+    });
     frontZIndex++;
     $('body').append(dancerDiv);
 }
@@ -183,11 +109,48 @@ function createMenu() {
         '</div>'
     ].join('');
     $('body').append(menuHtml);
+    $('.gdp-add-dancer').click(function() {
+        createDancerMenu();
+    })
+}
+
+function createDancerIcon(dancerName, imageUrl) {
+
+    var dancerIconDiv = $('<div class="gdp-dancer-icon"></div>');
+    var dancerThumbnailImg = $('<img class="gdp-dancer-thumbnail" src="' + imageUrl + '.png" />');
+    dancerIconDiv.append(dancerThumbnailImg);
+    dancerThumbnailImg.click(function() {
+        createGIFDancer(dancerName);
+        $('.gdp-dancer-menu').remove();
+    });
+
+    return dancerIconDiv;
+}
+
+function createDancerMenu() {
+
+    var dancerIconDivs = [];
+
+    for (var dancerName in thumbnailImgurIds) {
+        if (thumbnailImgurIds.hasOwnProperty(dancerName)) {
+            var imgurUrl = getImgurThumbnailUrl(dancerName);
+            dancerIconDivs.push(createDancerIcon(dancerName, imgurUrl));
+        }
+    }
+
+    var gdpDancerMenuDiv = $('<div class="gdp-dancer-menu"></div>');
+    var gdpDancerListContainer = $('<div class="gdp-dancer-list-container"></div>');
+    for (var i = 0; i < dancerIconDivs.length; i++) {
+        gdpDancerListContainer.append(dancerIconDivs[i]);
+    }
+    gdpDancerMenuDiv.append(gdpDancerListContainer);
+
+    $('body').append(gdpDancerMenuDiv);
 }
 
 /**
- * Create the START THE PARTY button in the bottom left corner of the screen
- */
+* Create the START THE PARTY button in the bottom left corner of the screen
+*/
 function createStartButton() {
 
     // append the button to the body of the current screen

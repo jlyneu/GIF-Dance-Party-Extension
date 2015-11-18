@@ -24,6 +24,34 @@
     vertical-align: top;
     zoom: 1;
 }
+.gdp-dancer-icon {
+    display: inline-block;
+    height: 100px;
+    margin-right: 5px;
+    width: 100px;
+}
+.gdp-dancer-list-container {
+    height: 450px;
+    overflow-x: scroll;
+    width: 450px;
+}
+.gdp-dancer-menu {
+    height: 80%;
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    margin-left: -225px;
+    width: 450px;
+    z-index: 2147483648;
+}
+.gdp-dancer-thumbnail {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 50%;
+    display: inline-block;
+    height: 100px;
+    width: 100px;
+}
 .gdp-flipped {
     transform: scaleX(-1);
 }
