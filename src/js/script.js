@@ -179,8 +179,10 @@ function createGIFDancer(dancerName) {
         .draggable()
         .hover(function() {
             $(this).css('background-color', 'rgba(0,0,0,.3)');
+            $(this).find('.gdp-opt').css('color', 'rgba(255,255,255,1)');
         }, function() {
             $(this).css('background-color', 'rgba(0,0,0,0)');
+            $(this).find('.gdp-opt').css('color', 'rgba(0,0,0,0)');
         });
     frontZIndex++;
     $('body').append(dancerDiv);
