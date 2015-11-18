@@ -49,7 +49,7 @@ function thePartyIsOff() {
 function startTheParty() {
     createMenu();
     selectSong('singalong');
-    createGIFDancer('carlton');
+    createGIFDancer('pumpGirl');
     $('.gdp-start').text("STOP THE PARTY");
 }
 
