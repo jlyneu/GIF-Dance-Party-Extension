@@ -6,6 +6,8 @@
   "version": "1.0.0",
   "icons" : {
   },
+    "browser_action":{
+    },
   "background": {
     "scripts": [
         "src/js/background.js"
