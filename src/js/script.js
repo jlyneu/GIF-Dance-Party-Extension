@@ -82,7 +82,9 @@ var dancerNameList = [
 chrome.runtime.onMessage.addListener(
     function(request, sender) {
         if(request.type == "startParty"){
-            startTheParty();
+            $(document).ready(function(){
+                startTheParty();
+            });
         }
         else if(request.type == "stopParty"){
             stopTheParty();
