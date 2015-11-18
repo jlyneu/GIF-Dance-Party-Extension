@@ -78,6 +78,17 @@ var dancerNameList = [
     'twerk2', 'whiteguy', 'wormlady', 'yeti'
 ];*/
 
+//listen for the button click to start and stop
+chrome.runtime.onMessage.addListener(
+    function(request, sender) {
+        if(request.type == "startParty"){
+            startTheParty();
+        }
+        else if(request.type == "stopParty"){
+            stopTheParty();
+        }
+    });
+
 function getImgurThumbnailUrl(dancerName) {
     return "https://imgur.com/" + thumbnailImgurIds[dancerName];
 }
@@ -188,26 +199,12 @@ function createMenu() {
 /**
  * Create the START THE PARTY button in the bottom left corner of the screen
  */
-function createStartButton() {
-
-    // append the button to the body of the current screen
-    $('body').append('<div class="gdp-start">START THE PARTY</div>');
-    $('head').append('<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css"></link>');
-
-    // apply the styles to the start button
-    $('.gdp-start').click(function() {
-        if (thePartyIsOff()) {
-            startTheParty();
-        } else {
-            stopTheParty();
-        }
-
-        // when leaving the page, be sure to stop the gdp audio
-        $(window).unload(function() {
-            stopAudio();
-        });
+function unloadAudio() {
+    // when leaving the page, be sure to stop the gdp audio
+    $(window).unload(function() {
+        stopAudio();
     });
 }
 
 // kick it all off once the page loads
-$(document).ready(createStartButton);
+$(document).ready(unloadAudio);
