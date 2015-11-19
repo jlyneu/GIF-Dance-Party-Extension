@@ -258,7 +258,7 @@ function thePartyIsOff() {
 function startTheParty() {
     createMainMenu();
     gdpMedia.selectSong('singalong');
-    createGIFDancer('carlton');
+    createGIFDancer('pumpGirl');
 }
 
 /* Remove the main menu, stop the music, and remove the GIF dancers, ADD
