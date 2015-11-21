@@ -160,8 +160,8 @@ function createAddDancerMenu() {
 
     // loop through all of the GIF dancer names and add the thumbnail DOM
     // element for the corresponding dancers to the thumbnailDivs list
-    for (var dancerName in gdpMedia.imgurIds) {
-        if (gdpMedia.imgurIds.hasOwnProperty(dancerName)) {
+    for (var dancerName in gdpMedia.mediaIds) {
+        if (gdpMedia.mediaIds.hasOwnProperty(dancerName)) {
             var imgurUrl = gdpMedia.getThumbnailUrl(dancerName);
             thumbnailDivs.push(createThumbnail(dancerName, imgurUrl));
         }
@@ -258,7 +258,7 @@ function thePartyIsOff() {
 function startTheParty() {
     createMainMenu();
     gdpMedia.selectSong('singalong');
-    createGIFDancer('pumpGirl');
+    createGIFDancer('pumpgirl');
 }
 
 /* Remove the main menu, stop the music, and remove the GIF dancers, ADD

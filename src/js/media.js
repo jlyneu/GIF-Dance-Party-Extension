@@ -9,43 +9,376 @@ gdpMedia =  {
         'halffull', 'nahnahnah', 'singalong', 'trololo',
         'twist', 'walkmen', 'wegotyou'
     ],
-    /* Mapping from dancer names to Giphy ids for dancer GIFs */
-    giphyIds: {
-        carlton: 'wn8rVP7qC8TNC',
-        pumpGirl: '26BkNiQlYeHc5jpf2'
-    },
-    /* Mapping from dancer names to Imgur ids for dancer thumbnails */
-    imgurIds: {
-        '8bitcarlton': 'ifuoPqn',
-        apple: 'wbv3RCd',
-        arnold: 'Sh6WPJs',
-        babe: 'hDWrKI7',
-        banana: 'Li3pOWH',
-        bananabounce: 'Ky3jiGQ',
-        bear: '7KW1zWk',
-        blob: 'P7meKeB',
-        bmo: 'Q6Jyks5',
-        bonebreak: 'otdi7m9',
-        bones: 'WEl9Npv',
-        breakglitch: 'TXYwR2F',
-        brian: 'mcVtWQT',
-        bunny: 'OPfS7wP',
-        bunnyspank: 'G9Bs0N9',
-        business: 'QaSTmdL',
-        cact: 'fn0xLOv',
-        carlton: 'uF179oM',
-        charlie: 'aXXDfwI',
-        chicken: 'Uckh2i8',
-        cowboy: 'sCxQ7om',
-        discoball: 'FqqZgIZ',
-        doggy: 'Q6r1gYp',
-        elvenbooty: '1GZgAQV',
-        fabio: '320x7kR',
-        fatspidey: '5GZYEmt',
-        foreveralone: 'jgOvt9T',
-        fred: 'FSvV7is',
-        fuzzball: 'ehDJ5bp',
-        gene: 'nfO1s5a'
+    /* Mapping from dancer names to Imgur thumbnail and Giphy dancer ids */
+    mediaIds: {
+        '8bitcarlton': {
+            imgur: 'ifuoPqn',
+            giphy: '3oEduOy5DYLEzDoxb2'
+        },
+        apple: {
+            imgur: 'wbv3RCd',
+            giphy: 'l41lQrLqxsH1EIuIw'
+        },
+        arnold: {
+            imgur: 'Sh6WPJs',
+            giphy: '3oEduW2sRvdCJjomZi'
+        },
+        babe: {
+            imgur: 'hDWrKI7',
+            giphy: 'l41lUxdQ1uRoQfC5G'
+        },
+        banana: {
+            imgur: 'Li3pOWH',
+            giphy: '3oEduNh73pM45xDSNi'
+        },
+        bananabounce: {
+            imgur: 'Ky3jiGQ',
+            giphy: '3oEdv13hKEjxNrEnU4'
+        },
+        bear: {
+            imgur: '7KW1zWk',
+            giphy: '3oEduP15LEqQfXJCNy'
+        },
+        blob: {
+            imgur: 'P7meKeB',
+            giphy: 'l41lOD9cTj6YbmcX6'
+        },
+        bmo: {
+            imgur: 'Q6Jyks5',
+            giphy: '3oEduYm2dxZpkCCkOA'
+        },
+        bonebreak: {
+            imgur: 'otdi7m9',
+            giphy: '3oEduIiEL5hcetXqAE'
+        },
+        bones: {
+            imgur: 'WEl9Npv',
+            giphy: 'l41lPlDTLS8NdfVRe'
+        },
+        breakglitch: {
+            imgur: 'TXYwR2F',
+            giphy: '3oEduRyxRC3ZDD1ZUQ'
+        },
+        brian: {
+            imgur: 'mcVtWQT',
+            giphy: 'l41lFG8HaIVcPt9QY'
+        },
+        bunny: {
+            imgur: 'OPfS7wP',
+            giphy: '3oEdv0KXjUeh27nm80'
+        },
+        bunnyspank: {
+            imgur: 'G9Bs0N9',
+            giphy: 'l41lNvJ5gkGf0y4Xm'
+        },
+        business: {
+            imgur: 'QaSTmdL',
+            giphy: 'l41lYaZWMVzDdSOA0'
+        },
+        cact: {
+            imgur: 'fn0xLOv',
+            giphy: 'l41lYdZg4lDWCYKjK'
+        },
+        carlton: {
+            imgur: 'uF179oM',
+            giphy: '3oEduT6H7fftjTic2k'
+        },
+        charlie: {
+            imgur: 'aXXDfwI',
+            giphy: '3oEduQkZZDBupCoXU4'
+        },
+        chicken: {
+            imgur: 'Uckh2i8',
+            giphy: '3oEdvbJZiqpNdiI5Bm'
+        },
+        cowboy: {
+            imgur: 'sCxQ7om',
+            giphy: '3oEduYRB2uyvHWEdJC'
+        },
+        discoball: {
+            imgur: 'FqqZgIZ',
+            giphy: 'l41lGAas7QuzXT9UQ'
+        },
+        doggy: {
+            imgur: 'Q6r1gYp',
+            giphy: 'l41lIG49uUKFm1sR2'
+        },
+        elvenbooty: {
+            imgur: '1GZgAQV',
+            giphy: 'l41lSUQKFfcm06jcY'
+        },
+        fabio: {
+            imgur: '320x7kR',
+            giphy: '3oEdvcgt5kA260mpva'
+        },
+        fatspidey: {
+            imgur: '5GZYEmt',
+            giphy: '3oEduV5zJRtZA20V32'
+        },
+        foreveralone: {
+            imgur: 'jgOvt9T',
+            giphy: 'l41lWaQCC5Y65ErUQ'
+        },
+        fred: {
+            imgur: 'FSvV7is',
+            giphy: 'l41lPqa3dpN6ete3m'
+        },
+        fuzzball: {
+            imgur: 'ehDJ5bp',
+            giphy: 'l41m6u6LCD3g50EfK'
+        },
+        gene: {
+            imgur: 'nfO1s5a',
+            giphy: '3oEdv6b7ul6xu0qkx2'
+        },
+        ghosty: {
+            imgur: 'VcNCtEa',
+            giphy: 'l41lUNDlC1ka19oU8'
+        },
+        girlstep: {
+            imgur: '0oluliM',
+            giphy: 'l41lIyJ7mUr60iBkA'
+        },
+        glitchtwist: {
+            imgur: 'WuctrmQ',
+            giphy: '3oEduYBI1JtL8FjhqU'
+        },
+        greenlady: {
+            imgur: 't8qX9Q2',
+            giphy: 'l41lFr6nvWK6foKXe'
+        },
+        greenlady2: {
+            imgur: '0v0rcxb',
+            giphy: '3oEduPQBm9ugmXOupq'
+        },
+        greything: {
+            imgur: 'aFiqpZe',
+            giphy: '3oEduOQK29fjTqx4B2'
+        },
+        headspin: {
+            imgur: 'tCmveGx',
+            giphy: '26BkLAMkUUe4Kjom4'
+        },
+        hellicopter: {
+            imgur: 'NiEBM1c',
+            giphy: 'l41lR1gaWyabZeLrW'
+        },
+        hipdog: {
+            imgur: 'eMs7spK',
+            giphy: '3oEdvaWNO2CrIE4fh6'
+        },
+        hotdogs: {
+            imgur: 'g9wUmtR',
+            giphy: '3oEduOwP0y4eYwQBNK'
+        },
+        hula: {
+            imgur: 'LoWDE67',
+            giphy: '3oEdv8tYhAP5obLpUk'
+        },
+        humpery: {
+            imgur: 'PXplXOH',
+            giphy: 'l41lFnwluQ94HmMuY'
+        },
+        jason: {
+            imgur: 'YTLTpTk',
+            giphy: 'l41lZ65JSCJPni7FS'
+        },
+        kirby: {
+            imgur: 'fOit8Na',
+            giphy: 'l41lVDy4QPJJApSPS'
+        },
+        kitty: {
+            imgur: 'IOO2VgN',
+            giphy: '3oEduKQuAlKRfgRAvS'
+        },
+        lilguy: {
+            imgur: 'wETEb4l',
+            giphy: 'l41lI6dIfDLLMsNjy'
+        },
+        maranda: {
+            imgur: 'zZrLAyH',
+            giphy: '26BkNCYFWc3YrUSFa'
+        },
+        matrix: {
+            imgur: 'o9uEMoW',
+            giphy: '3oEduMJZiPuQIGRkOs'
+        },
+        mj: {
+            imgur: 'U0TcBG6',
+            giphy: '3oEdv8uVwchZIxkJDG'
+        },
+        momdance: {
+            imgur: 'M0RSmnl',
+            giphy: '3oEduJHTSEBYzpKCd2'
+        },
+        morpher: {
+            imgur: 'vq20Qxj',
+            giphy: 'l41lZ1fEGsSIdMK88'
+        },
+        nerd: {
+            imgur: 'S5Wo2T1',
+            giphy: 'l41lTnsFgDcDFtiPm'
+        },
+        noshorts: {
+            imgur: 'TEfISD0',
+            giphy: '3oEduGtSMcWBJPSDhC'
+        },
+        nudeflames: {
+            imgur: 'YWBRjHm',
+            giphy: 'l41lN2q4zQyfvtyV2'
+        },
+        obama: {
+            imgur: 'lKpfbv1',
+            giphy: 'l41lSXRKx8csZ1kic'
+        },
+        orangeguy: {
+            imgur: 'rG0HL2S',
+            giphy: '3oEduRSQNa8CTeA3iU'
+        },
+        pa: {
+            imgur: 'wzTfl7Z',
+            giphy: 'l41lXHizBwZJWoYLK'
+        },
+        patrick: {
+            imgur: 'CgLMqm8',
+            giphy: '3oEdv6ocnBsOlAUQfK'
+        },
+        pedopickle: {
+            imgur: 'jRoMC6Y',
+            giphy: 'l41m3WCro5TSN7Bp6'
+        },
+        pilboy: {
+            imgur: '0iBVON5',
+            giphy: '3oEdv3Z6pdRKmTuJY4'
+        },
+        pixelly: {
+            imgur: 'Qw2O47x',
+            giphy: '3oEduPmVVIex3w0Oys'
+        },
+        pizza: {
+            imgur: 'cdLlK1q',
+            giphy: '3oEdv5pg8ivCpQZAWI'
+        },
+        ponyshuffle: {
+            imgur: '6frE5RS',
+            giphy: '3oEduTi5ktbhXp3Rm0'
+        },
+        possum: {
+            imgur: 'lFPmQrS',
+            giphy: '3oEduKLDMtc7jleGgU'
+        },
+        pretzel: {
+            imgur: 'ffv9231',
+            giphy: '3oEdv5NkIKao86MOOY'
+        },
+        psych: {
+            imgur: 'CUnUWId',
+            giphy: 'l41m3eRKjt6thCxOw'
+        },
+        pumpgirl: {
+            imgur: 'GD8TggR',
+            giphy: 'l41m4R1fgL5jZX1Qc'
+        },
+        ravecat: {
+            imgur: 'KWBLGKg',
+            giphy: '3oEduWBjP4utBdgGL6'
+        },
+        robothump: {
+            imgur: 'VZNMx5i',
+            giphy: '3oEdv53199cJ6nUhDq'
+        },
+        roger: {
+            imgur: 'JSMQUnh',
+            giphy: '3oEdv21WszrucZzBSw'
+        },
+        runningworm: {
+            imgur: '4cDqUCe',
+            giphy: '3oEdv2xy5QjqBiSxzO'
+        },
+        saxguy: {
+            imgur: 'E3sRBkX',
+            giphy: 'l41lWg4naO0TljUSQ'
+        },
+        scorpion: {
+            imgur: 'dzScRdd',
+            giphy: '3oEduNF2afOEDQ4kCY'
+        },
+        shawty: {
+            imgur: 'stZZLVd',
+            giphy: '3oEdv0F6sqE5XCWkCc'
+        },
+        slappy: {
+            imgur: 'kzNQ1og',
+            giphy: 'l41m35UbftOXLeqD6'
+        },
+        smooch: {
+            imgur: 'BeH7q4x',
+            giphy: '3oEduTxikdl6659Tws'
+        },
+        speakerhead: {
+            imgur: '7Hy7lrN',
+            giphy: 'l41lTFERkZe2H9FOo'
+        },
+        spinglitch: {
+            imgur: 'dt4lS4G',
+            giphy: 'l41lYuEqwTOWIkFPy'
+        },
+        spongeybob: {
+            imgur: '6AXEklV',
+            giphy: '3oEduGmM5MJLjciFSU'
+        },
+        squidword: {
+            imgur: 'v9pzZCM',
+            giphy: '26BkMz3mtQqMl6Dw4'
+        },
+        stripper1: {
+            imgur: 'B1mcq6w',
+            giphy: '3oEdv72whCo2Fi8WAw'
+        },
+        stripper2: {
+            imgur: 'lMp46OR',
+            giphy: '3oEduEd9hx2PyRv0pq'
+        },
+        tej: {
+            imgur: 'Q49aPYo',
+            giphy: '3oEduF6VoHOTKkrplu'
+        },
+        thehop: {
+            imgur: '5fmPHBc',
+            giphy: '3oEduP8lE334O5KNJS'
+        },
+        thewizard: {
+            imgur: 'FExyzq0',
+            giphy: '3oEduP15u1e3duOSE8'
+        },
+        theworm: {
+            imgur: 'Z62jSAr',
+            giphy: 'l41m6R0OgDvej2Vag'
+        },
+        tim: {
+            imgur: 'hGXXXDl',
+            giphy: 'l41lT8zKKiIRjnM1G'
+        },
+        twerk: {
+            imgur: 'EjL0GLT',
+            giphy: 'l41lQZJYzSqGDWFz2'
+        },
+        twerk2: {
+            imgur: 'Wrr23n4',
+            giphy: 'l41lMNq45znehGNck'
+        },
+        whiteguy: {
+            imgur: '6jYdEPO',
+            giphy: '3oEduKmO22VEzbmpLq'
+        },
+        wormlady: {
+            imgur: '8MgJ0S7',
+            giphy: '26BkNgV3XffF5vS2Q'
+        },
+        yeti: {
+            imgur: '4LDzQq6',
+            giphy: '3oEduYLrzljc1cGY5a'
+        }
     },
     /* List of GIF Dance Party dancer names */
     dancerNameList: [
@@ -75,11 +408,11 @@ gdpMedia =  {
     ],
     /* Retrieve the Imgur url for the given dancer's thumbnail image */
     getThumbnailUrl: function(dancerName) {
-        return "https://imgur.com/" + gdpMedia.imgurIds[dancerName] + ".png";
+        return "https://imgur.com/" + gdpMedia.mediaIds[dancerName]["imgur"] + ".png";
     },
     /* Retrieve the Giphy url for the given dancer's GIF */
     getGifUrl: function(dancerName) {
-        return "https://media.giphy.com/media/" + gdpMedia.giphyIds[dancerName] + "/giphy.gif";
+        return "https://media.giphy.com/media/" + gdpMedia.mediaIds[dancerName]["giphy"] + "/giphy.gif";
     },
     /* Send a message to the background script to play the song with the
        given name */
