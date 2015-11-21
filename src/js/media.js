@@ -380,32 +380,6 @@ gdpMedia =  {
             giphy: '3oEduYLrzljc1cGY5a'
         }
     },
-    /* List of GIF Dance Party dancer names */
-    dancerNameList: [
-        '8bitcarlton', 'apple', 'arnold', 'babe',
-        'banana', 'bananabounce', 'bear', 'blob',
-        'bmo', 'bonebreak', 'bones', 'breakglitch',
-        'brian', 'bunny', 'bunnyspank', 'business',
-        'cact', 'carlton', 'charlie', 'chicken',
-        'cowboy', 'discoball', 'doggy', 'elvenbooty',
-        'fabio', 'fatspidey', 'foreveralone', 'fred',
-        'fuzzball', 'gene', 'ghosty', 'girlstep',
-        'glitchtwist', 'greenlady', 'greenlady2', 'greything',
-        'headspin', 'hellicopter', 'hipdog', 'hotdogs',
-        'hula', 'humpery', 'jason', 'kirby',
-        'kitty', 'lilguy', 'maranda', 'matrix',
-        'mj', 'momdance', 'morpher', 'nerd',
-        'noshorts', 'nudeflames', 'obama', 'orangeguy',
-        'pa', 'patrick', 'pedopickle', 'pilboy',
-        'pixelly', 'pizza', 'ponyshuffle', 'possum',
-        'pretzel', 'psych', 'pumpgirl', 'ravecat',
-        'robothump', 'roger', 'runningworm', 'saxguy',
-        'scorpion', 'shawty', 'slappy', 'smooch',
-        'speakerhead', 'spinglitch', 'spongeybob', 'squidword',
-        'stripper1', 'stripper2', 'tej', 'thehop',
-        'thewizard', 'theworm', 'tim', 'twerk',
-        'twerk2', 'whiteguy', 'wormlady', 'yeti'
-    ],
     /* Retrieve the Imgur url for the given dancer's thumbnail image */
     getThumbnailUrl: function(dancerName) {
         return "https://imgur.com/" + gdpMedia.mediaIds[dancerName]["imgur"] + ".png";
