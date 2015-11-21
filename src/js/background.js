@@ -4,8 +4,6 @@ var defaultSongName = 'singalong';
 var gdpAudio = new Audio();
 gdpAudio.src = getAudioUrl(defaultSongName);
 
-var triggered = false; //variable to store whether weve started the party
-
 // get the url for the audio from the gdp website
 function getAudioUrl(songName) {
     return 'http://gifdanceparty.giphy.com/music/' + songName + '.ogg';
