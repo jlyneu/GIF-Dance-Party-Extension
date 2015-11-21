@@ -1,4 +1,9 @@
 /******************************************************************************
+ * INCLUDES
+ *****************************************************************************/
+ $('head').append('<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"></link>');
+
+/******************************************************************************
  * CONSTANTS
  *****************************************************************************/
 
@@ -40,23 +45,23 @@ function createGIFDancer(dancerName) {
     // Remove the GIF dancer on click of the close X button
     var closeDiv = $('<div class="gdp-opt gdp-top-left">X</div>')
         .click(function() {
-            $(this).parent().remove();
+            $(this).parents('.gdp-dancer').remove();
         });
     // Horizontally flip the GIF dancer on click of the FLIP button
     var flipDiv = $('<div class="gdp-opt gdp-top-right">FLIP</div>')
         .click(function() {
-            flipImage($(this).parent().find('img'));
+            flipImage($(this).parents('.gdp-dancer').find('img'));
         });
     // Send the GIF dancer to the back on click of the BACK button
     var backDiv = $('<div class="gdp-opt gdp-top-right">BACK</div>')
         .click(function() {
-            $(this).parent().css('z-index', backZIndex);
+            $(this).parents('.gdp-dancer').css('z-index', backZIndex);
             backZIndex--;
         });
     // Send the GIF dancer to the front on click of the FRONT button
     var frontDiv = $('<div class="gdp-opt gdp-top-right">FRONT</div>')
         .click(function() {
-            $(this).parent().css('z-index', frontZIndex);
+            $(this).parents('.gdp-dancer').css('z-index', frontZIndex);
             frontZIndex++;
         });
     // Create a new GIF of the same dancer on click of the CLONE button
@@ -67,23 +72,29 @@ function createGIFDancer(dancerName) {
     // On mouse down on the RESIZE button, allow the user to resize the GIF
     var resizeDiv = $('<div class="gdp-opt gdp-bottom-right">RESIZE</div>');
 
-    // --------------------------------------------------------------------- //
-
-    // create the dancer div containing the GIF and the various dancer options
-    var dancerDiv = $('<div class="gdp-dancer"></div>')
-        // set the z-index such that this dancer is in front
-        .css('z-index', frontZIndex)
-        // append the buttons for the dancer options
+    var topOptDiv = $('<div class="gdp-top-opt"></div>')
         .append(closeDiv)
         .append(flipDiv)
         .append(backDiv)
-        .append(frontDiv)
+        .append(frontDiv);
+
+    // --------------------------------------------------------------------- //
+
+    var resizableDiv = $('<div class="gdp-resizable"></div>')
+        // set the z-index such that this dancer is in front
+        .css('z-index', frontZIndex)
+        // append the buttons for the dancer options
+        .append(topOptDiv)
         .append(cloneDiv)
         .append(resizeDiv)
         // append the actual GIF dancer
         .append(gifImg)
-        // allow the user to drag this div around the screen
-        .draggable()
+        // allow the user to resize this div
+        .resizable({
+            // alsoResize: function() {
+            //     return $(this).find('img');
+            // }
+        })
         // on hover, display the dancer options
         .hover(function() {
             $(this).css('background-color', 'rgba(0,0,0,.3)');
@@ -92,6 +103,12 @@ function createGIFDancer(dancerName) {
             $(this).css('background-color', 'rgba(0,0,0,0)');
             $(this).find('.gdp-opt').css('color', 'rgba(0,0,0,0)');
         });
+
+    // create the dancer div containing the GIF and the various dancer options
+    var dancerDiv = $('<div class="gdp-dancer"></div>')
+        // allow the user to drag this div around the screen
+        .draggable()
+        .append(resizableDiv);
 
     // increment the frontZIndex value so the next created GIF will be in front
     frontZIndex++;
