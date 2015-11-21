@@ -247,10 +247,10 @@ function createSongOption(songName) {
  * STARTING AND STOPPING THE PARTY
  *****************************************************************************/
 
-/* Return true if the part is off, meaning the main menu is not currently
+/* Return true if the part is on, meaning the main menu is currently
    displayed on the screen. Otherwise, return false */
-function thePartyIsOff() {
-    return $('.gdp-main-menu').length === 0;
+function isPartyOn() {
+    return $('.gdp-main-menu').length > 0;
 }
 
 /* Append the main menu to the screen, start the music, and append the default
@@ -276,10 +276,17 @@ function stopTheParty() {
 
 /* Set a listener for messages requesting to start and stop the GDP */
 chrome.runtime.onMessage.addListener(function(request, sender) {
-    if(request.type == "startParty"){
+    // tell the background script whether the party is on or off
+    if(request.type == "isPartyOn") {
+        chrome.runtime.sendMessage({
+            type: "partyStatus",
+            isPartyOn: isPartyOn()
+        });
+    }
+    else if (request.type == "startParty") {
         startTheParty();
     }
-    else if(request.type == "stopParty"){
+    else if (request.type == "stopParty") {
         stopTheParty();
     }
 });

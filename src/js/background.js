@@ -11,30 +11,35 @@ function getAudioUrl(songName) {
     return 'http://gifdanceparty.giphy.com/music/' + songName + '.ogg';
 }
 
-//listen for clicks to the icon
+// send a message to the currently opened tab
+function messageCurrentTab(message) {
+    chrome.tabs.query({
+        active: true,
+        lastFocusedWindow: true
+    }, function(tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, message);
+    });
+}
+
+// listen for clicks to the icon
 chrome.browserAction.onClicked.addListener(function (){
-    //keep state to toggle
-    if(triggered == false){
-        //get selected tab
-        chrome.tabs.getSelected(null, function(tab) {
-            //send tab user script a message 
-            chrome.tabs.sendMessage(tab.id, {type: "startParty"});
-            triggered = true;
-        });
-    }
-    else{
-        chrome.tabs.getSelected(null, function(tab) {
-            chrome.tabs.sendMessage(tab.id, {type: "stopParty"});
-            triggered = false;
-        });
-    }
+    messageCurrentTab({type: "isPartyOn"});
 });
 
 // listen for events from the gdp content script
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
+        // incoming message about party status
+        if (request.type === "partyStatus") {
+            if (request.isPartyOn) {
+                messageCurrentTab({type: "stopParty"});
+            }
+            else {
+                messageCurrentTab({type: "startParty"});
+            }
+        }
         // incoming message to play a particular song
-        if (request.type === "songName") {
+        else if (request.type === "songName") {
             gdpAudio.src = getAudioUrl(request.songName);
             gdpAudio.loop = true;
             gdpAudio.play();
