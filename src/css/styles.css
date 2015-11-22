@@ -35,13 +35,13 @@
 .gdp-main-menu-btn {
     background-color: rgba(35, 126, 248, .3);
     border-radius: 4px;
-    box-shadow: 2px 1px 1px #d9d9d9;
     display: inline-block;
     margin: 10px;
     padding: 15px;
 }
 .gdp-main-menu-btn:hover {
     background-color: rgba(35, 126, 248, 1);
+    box-shadow: 2px 1px 1px #666666;
 }
 .gdp-menu {
     height: 100%;
@@ -51,6 +51,7 @@
     width: 100%;
 }
 .gdp-menu-list {
+    border-radius: 5px;
     height: 70%;
     left: 50%;
     margin-left: -225px;
@@ -70,14 +71,16 @@
 }
 #gdp-add-gif-input {
     width: 300px;
+    font-family: 'Hammersmith One';
     height:30px;
     display: inline-block;
-    padding:2px;
+    padding:10px;
 }
 #gdp-add-gif-button {
-    width: 45px;
-    background-color:#2F30FF;
+    background-color: rgb(35, 126, 248);
+    box-shadow: 2px 1px 1px #666666;
     color: white;
+    font-family: 'Hammersmith One';
     padding: 11px;
     display: inline-block;
     border-radius: 2px;
@@ -91,13 +94,18 @@
     display: none;
     font-weight: bold;
 }
+.gdp-song-list {
+    height: 80%;
+}
 .gdp-song-option {
-    background-color: black;
-    border: 1px solid white;
+    background-color: rgb(131, 0, 168);
+    border-radius: 5px;
+    box-shadow: 2px 1px 1px #666666;
     color: white;
     font-family: 'Hammersmith One';
     font-size: 30px;
     font-weight: bold;
+    margin: 1px;
     padding: 30px;
 }
 .gdp-thumbnail-img {
