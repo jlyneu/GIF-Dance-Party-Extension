@@ -38,7 +38,14 @@ chrome.runtime.onMessage.addListener(
         }
         // incoming message to play a particular song
         else if (request.type === "songName") {
-            gdpAudio.src = getAudioUrl(request.songName);
+            if (request.songName === "hotlinebling") {
+                gdpAudio.src = "http://picosong.com/media/songs/ef1dd02667df4c682ef9b521f50c8a35.mp3";
+            }
+            else if (request.isCustom) {
+                gdpAudio.src = request.songName;
+            } else {
+                gdpAudio.src = getAudioUrl(request.songName);
+            }
             gdpAudio.loop = true;
             gdpAudio.play();
             // incoming message to stop audio, aka STOP THE PARTY

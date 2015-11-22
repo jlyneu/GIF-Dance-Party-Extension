@@ -229,9 +229,12 @@ function createAddDancerMenu() {
 
     // append the thumbnail list to the screen
     gdpAddDancerMenu.append(gdpAddDancerList);
-    var addGif =    "<div id='gdp-add-gif-wrapper'><input type='text' align='left'" +
-                    " placeholder='Add a custom gif URL' id='gdp-add-gif-input'></input>" +
-                    "<div id='gdp-add-gif-button'>Submit</div></div>";
+    var addGif = ["<div id='gdp-add-gif-wrapper' class='gdp-add-custom-wrapper'>",
+                       "<input type='text' align='left' ",
+                           "placeholder='Add a custom song URL' id='gdp-add-gif-input' ",
+                           "class='gdp-add-custom-input'></input>" +
+                       "<div id='gdp-add-gif-button' class='gdp-add-custom-button'>Submit</div>",
+                   "</div>"].join('');
     gdpAddDancerMenu.append(addGif);
     $('body').append(gdpAddDancerMenu);
     $("#gdp-add-gif-button").click(function(){
@@ -259,7 +262,6 @@ function addGiphy(){
    }else{
        alert("URL did not point to a .GIF");
    }
-
 }
 
 // ---------------------- create the SELECT SONG menu ---------------------- //
@@ -296,7 +298,10 @@ function createSelectSongMenu() {
     var gdpSelectSongMenu = $('<div class="gdp-menu"></div>')
     .css('z-index', maxZIndex)
     .click(function() {
-        $(this).remove();
+        if(!$("#gdp-add-song-input").is(":focus")){
+            //input and text area has focus
+            $(this).remove();
+        }
     });
 
     // div containing the song options
@@ -309,11 +314,38 @@ function createSelectSongMenu() {
 
     // append the song option list to the screen
     gdpSelectSongMenu.append(gdpSelectSongList);
+
+    var addSong = ["<div id='gdp-add-song-wrapper' class='gdp-add-custom-wrapper'>",
+                       "<input type='text' align='left' ",
+                           "placeholder='Add a custom song URL' id='gdp-add-song-input' ",
+                           "class='gdp-add-custom-input'></input>" +
+                       "<div id='gdp-add-song-button' class='gdp-add-custom-button'>Submit</div>",
+                   "</div>"].join('');
+    gdpSelectSongMenu.append(addSong);
+    $('body').append(gdpSelectSongMenu);
+    $("#gdp-add-song-button").click(function(){
+        addCustomSong();
+    });
+
     $('body').append(gdpSelectSongMenu);
 }
 
+// ---------------------Take In Custom Songs---------------------- //
 
-// ------------------------------------------------------------------------- //
+/*
+    Listen for an enter event or click Submit
+*/
+$(document).keypress(function(e) {
+    if(e.which == 13 && $("#gdp-add-song-input").is(":focus")) {
+        //pressed enter while focused
+        $('#gdp-add-song-button').click();
+    }
+});
+function addCustomSong(){
+   var link = $("#gdp-add-song-input").val(); //get the link from the input
+   $('.gdp-menu').remove();
+   gdpMedia.selectSong(link, true);
+}
 
 /******************************************************************************
 * STARTING AND STOPPING THE PARTY

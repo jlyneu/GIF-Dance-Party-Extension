@@ -1,3 +1,32 @@
+.gdp-add-custom-button {
+    background-color: rgb(35, 126, 248);
+    box-shadow: 2px 1px 1px #666666;
+    color: white;
+    font-family: 'Hammersmith One';
+    padding: 11px;
+    display: inline-block;
+    border-radius: 2px;
+    margin-left: 5px;
+}
+.gdp-add-custom-button:hover {
+    cursor: pointer;
+}
+.gdp-add-custom-input {
+    width: 300px;
+    font-family: 'Hammersmith One';
+    height:30px;
+    display: inline-block;
+    padding:10px;
+}
+.gdp-add-custom-wrapper {
+    position: fixed;
+    left: 50%;
+    margin-left: -225px;
+    top: 80%;
+    width: 450px;
+    margin-left: -225px;
+    margin-top: 10px;
+}
 .gdp-bottom-left {
     bottom: 10px;
     left: 10px;
@@ -60,38 +89,10 @@
     top: 10%;
     width: 450px;
 }
-#gdp-add-gif-wrapper{
-    position: fixed;
-    left: 50%;
-    margin-left: -225px;
-    top: 80%;
-    width: 450px;
-    margin-left: -225px;
-    margin-top: 10px;
-}
-#gdp-add-gif-input {
-    width: 300px;
-    font-family: 'Hammersmith One';
-    height:30px;
-    display: inline-block;
-    padding:10px;
-}
-#gdp-add-gif-button {
-    background-color: rgb(35, 126, 248);
-    box-shadow: 2px 1px 1px #666666;
-    color: white;
-    font-family: 'Hammersmith One';
-    padding: 11px;
-    display: inline-block;
-    border-radius: 2px;
-    margin-left: 5px;
-}
-#gdp-add-gif-button:hover{
-    cursor: pointer;
-}
 .gdp-opt {
     color: white;
     display: none;
+    font-family: 'Hammersmith One';
     font-weight: bold;
 }
 .gdp-song-option {
@@ -116,6 +117,7 @@
 .gdp-thumbnail-wrapper {
     display: inline-block;
     height: 100px;
+    margin: 0 5px 5px 0;
     margin-right: 5px;
     width: 100px;
 }

@@ -6,7 +6,7 @@ gdpMedia =  {
     /* List of GIF Dance Party song titles */
     gdpPlaylist: [
         'bazz', 'bubblebutt', 'fatboy', 'grounded',
-        'halffull', 'nahnahnah', 'singalong', 'trololo',
+        'halffull', 'hotlinebling', 'nahnahnah', 'singalong', 'trololo',
         'twist', 'walkmen', 'wegotyou'
     ],
     /* Mapping from dancer names to Imgur thumbnail and Giphy dancer ids */
@@ -390,10 +390,12 @@ gdpMedia =  {
     },
     /* Send a message to the background script to play the song with the
        given name */
-    selectSong: function(name) {
+    selectSong: function(name, isCustom) {
+        console.log(name);
         chrome.runtime.sendMessage({
             type: "songName",
-            songName: name
+            songName: name,
+            isCustom: isCustom
         });
     },
     /* Send a message to the background script to stop playing audio */
