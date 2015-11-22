@@ -66,18 +66,18 @@ function createGIFDancer(dancerName) {
         });
     // Create a new GIF of the same dancer on click of the CLONE button
     var cloneDiv = $('<div class="gdp-opt gdp-bottom-left">CLONE</div>')
+        .css('z-index', maxZIndex)
         .click(function() {
             createGIFDancer(dancerName);
         });
-    // On mouse down on the RESIZE button, allow the user to resize the GIF
-    var resizeDiv = $('<div class="gdp-opt gdp-bottom-right">RESIZE</div>');
 
     // Create a div to hold the top dancer options above the GIF itself
     var topOptDiv = $('<div class="gdp-top-opt"></div>')
         .append(closeDiv)
         .append(flipDiv)
         .append(backDiv)
-        .append(frontDiv);
+        .append(frontDiv)
+        .css('z-index', maxZIndex);
 
     // --------------------------------------------------------------------- //
 
@@ -86,7 +86,6 @@ function createGIFDancer(dancerName) {
         // append the buttons for the dancer options
         .append(topOptDiv)
         .append(cloneDiv)
-        .append(resizeDiv)
         // append the actual GIF dancer
         .append(gifImg)
         // on hover, display the dancer options
