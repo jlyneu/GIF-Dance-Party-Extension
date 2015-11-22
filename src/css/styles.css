@@ -69,15 +69,22 @@
     margin-top: 10px;
 }
 #gdp-add-gif-input {
-    width: 350px;
+    width: 300px;
+    height:30px;
     display: inline-block;
+    padding:2px;
 }
 #gdp-add-gif-button {
     width: 45px;
     background-color:#2F30FF;
     color: white;
-    padding: 4px;
+    padding: 11px;
     display: inline-block;
+    border-radius: 2px;
+    margin-left: 5px;
+}
+#gdp-add-gif-button:hover{
+    cursor: pointer;
 }
 .gdp-opt {
     color: white;

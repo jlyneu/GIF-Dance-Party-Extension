@@ -252,8 +252,14 @@ $(document).keypress(function(e) {
 });
 function addGiphy(){
    var link = $("#gdp-add-gif-input").val(); //get the link from the input
-   $('.gdp-menu').remove();
-   createGIFDancer("",link);
+   var ending = link.slice(-4);
+   if(ending == ".gif"){
+       $('.gdp-menu').remove();
+       createGIFDancer("",link);
+   }else{
+       alert("URL did not point to a .GIF");
+   }
+
 }
 
 // ---------------------- create the SELECT SONG menu ---------------------- //
