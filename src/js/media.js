@@ -103,9 +103,9 @@ gdpMedia =  {
             imgur: 'Q6r1gYp',
             giphy: 'l41lIG49uUKFm1sR2'
         },
-        elvenbooty: {
+        heman: {
             imgur: '1GZgAQV',
-            giphy: 'l41lSUQKFfcm06jcY'
+            giphy: '3o85xEQknNotn5dXfG'
         },
         fabio: {
             imgur: '320x7kR',
