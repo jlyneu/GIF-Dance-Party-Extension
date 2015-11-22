@@ -23,6 +23,7 @@
     top: 0;
     vertical-align: top;
     zoom: 1;
+    min-height: 100px;
 }
 .gdp-flipped {
     transform: scaleX(-1);
@@ -43,13 +44,33 @@
     width: 100%;
 }
 .gdp-menu-list {
-    height: 80%;
+    height: 70%;
     left: 50%;
     margin-left: -225px;
     overflow-x: scroll;
     position: fixed;
     top: 10%;
     width: 450px;
+}
+#gdp-add-gif-wrapper{
+    position: fixed;
+    left: 50%;
+    margin-left: -225px;
+    top: 80%;
+    width: 450px;
+    margin-left: -225px;
+    margin-top: 10px;
+}
+#gdp-add-gif-input {
+    width: 350px;
+    display: inline-block;
+}
+#gdp-add-gif-button {
+    width: 45px;
+    background-color:#2F30FF;
+    color: white;
+    padding: 4px;
+    display: inline-block;
 }
 .gdp-opt {
     color: white;
