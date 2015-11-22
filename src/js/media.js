@@ -55,9 +55,9 @@ gdpMedia =  {
             imgur: 'WEl9Npv',
             giphy: 'l41lPlDTLS8NdfVRe'
         },
-        breakglitch: {
-            imgur: 'TXYwR2F',
-            giphy: '3oEduRyxRC3ZDD1ZUQ'
+        drakeWrist: {
+            imgur: 'y9SXLG0',
+            giphy: 'xTiTnLOTgCWEu3akr6'
         },
         brian: {
             imgur: 'mcVtWQT',
@@ -123,9 +123,9 @@ gdpMedia =  {
             imgur: 'FSvV7is',
             giphy: 'l41lPqa3dpN6ete3m'
         },
-        fuzzball: {
-            imgur: 'ehDJ5bp',
-            giphy: 'l41m6u6LCD3g50EfK'
+        drakePush: {
+            imgur: 'y9SXLG0',
+            giphy: '3oEduLLkRxHa9LrwTS'
         },
         gene: {
             imgur: 'nfO1s5a',
@@ -139,9 +139,9 @@ gdpMedia =  {
             imgur: '0oluliM',
             giphy: 'l41lIyJ7mUr60iBkA'
         },
-        hotline: {
+        drakeHotline: {
             imgur: 'y9SXLG0',
-            giphy: '3o85xxzPPcpc2BfAys'
+            giphy: '3oEduGBEzAuZHR9jwc'
         },
         greenlady: {
             imgur: 't8qX9Q2',
