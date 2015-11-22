@@ -6,7 +6,6 @@
 /******************************************************************************
  * CONSTANTS
  *****************************************************************************/
-
 /** Maximum z-index value */
 var maxZIndex = Math.pow(2, 31);
 
@@ -17,8 +16,8 @@ var frontZIndex = maxZIndex - 500;
 var backZIndex = frontZIndex - 1;
 
 /******************************************************************************
- * DANCER CREATION
- *****************************************************************************/
+* DANCER CREATION
+*****************************************************************************/
 
 /* Horizontally flip the given image element */
 function flipImage($image) {
@@ -30,15 +29,23 @@ function flipImage($image) {
 }
 
 /* Create a GIF of the dancer with the given name in the top left corner
-   of the screen. On hover, the GIF will have an X button in the top left,
-   a FLIP, FRONT, and BACK button in the top right, a CLONE button in
-   the bottom left, and a RESIZE handle in the bottom right. GIFS should
-   by default be in front of the other divs upon creation. */
-function createGIFDancer(dancerName) {
-    // Giphy url for the GIF dancer
-    var gifUrl = gdpMedia.getGifUrl(dancerName);
-    // Img element of the GIF dancer
-    var gifImg = $('<img src="' + gifUrl + '" />');
+of the screen. On hover, the GIF will have an X button in the top left,
+a FLIP, FRONT, and BACK button in the top right, a CLONE button in
+the bottom left, and a RESIZE handle in the bottom right. GIFS should
+by default be in front of the other divs upon creation. */
+function createGIFDancer(dancerName, url) {
+    if(!url){
+        //no url was defined
+        // Giphy url for the GIF dancer
+        var gifUrl = gdpMedia.getGifUrl(dancerName);
+        // Img element of the GIF dancer
+        var gifImg = $('<img src="' + gifUrl + '" />');
+    }
+    else{
+        var gifUrl = url;
+        var gifImg = $('<img src="' + url + '" />');
+    }
+
 
     // ----------------- create the various dancer options ----------------- //
 
@@ -68,7 +75,14 @@ function createGIFDancer(dancerName) {
     var cloneDiv = $('<div class="gdp-opt gdp-bottom-left">CLONE</div>')
         .css('z-index', maxZIndex)
         .click(function() {
-            createGIFDancer(dancerName);
+            if(!url){
+                //one from a list
+                createGIFDancer(dancerName);
+            }
+            else{
+                //one from Custom
+                createGIFDancer("",gifUrl);
+            }
         });
 
     // Create a div to hold the top dancer options above the GIF itself
@@ -126,17 +140,17 @@ function createGIFDancer(dancerName) {
 }
 
 /******************************************************************************
- * MENU CREATION
- *****************************************************************************/
+* MENU CREATION
+*****************************************************************************/
 
 /* Append the main menu containing "ADD DANCER" and "SELECT SONG" options
-   to the bottom right corner of the screen */
+to the bottom right corner of the screen */
 function createMainMenu() {
 
     var menuHtml = [
         '<div class="gdp-main-menu">',
-            '<div class="gdp-add-dancer">ADD DANCER</div>',
-            '<div class="gdp-select-song">SELECT SONG</div>',
+        '<div class="gdp-add-dancer">ADD DANCER</div>',
+        '<div class="gdp-select-song">SELECT SONG</div>',
         '</div>'
     ].join('');
 
@@ -157,7 +171,7 @@ function createMainMenu() {
 // ---------------------- create the ADD DANCER menu ----------------------- //
 
 /* Return an element representing the 100px by 100px thumbnail of the GIF
-   dancer framed by a white circle with a black border */
+dancer framed by a white circle with a black border */
 function createThumbnail(dancerName, imageUrl) {
 
     var dancerThumbnailWrapper = $('<div class="gdp-thumbnail-wrapper"></div>');
@@ -175,10 +189,10 @@ function createThumbnail(dancerName, imageUrl) {
 }
 
 /* Create the ADD DANCER menu, containing the thumbnails of all the GDP GIF
-   dancers. On click of a GIF dancer thumbnail, the menu will be removed and
-   the GIF dancer will be appended to the screen. Clicking on anything besides
-   the thumbnails will close the ADD DANCER menu without appending any GIF
-   dancers to the screen */
+dancers. On click of a GIF dancer thumbnail, the menu will be removed and
+the GIF dancer will be appended to the screen. Clicking on anything besides
+the thumbnails will close the ADD DANCER menu without appending any GIF
+dancers to the screen */
 function createAddDancerMenu() {
 
     // a list to hold the DOM elements of the GIF dancer thumbnails
@@ -196,10 +210,13 @@ function createAddDancerMenu() {
     // transparent full screen div that contains the list of thumbnails, but
     // will close on click
     var gdpAddDancerMenu = $('<div class="gdp-menu"></div>')
-        .css('z-index', maxZIndex)
-        .click(function() {
+    .css('z-index', maxZIndex)
+    .click(function() {
+        if(!$("#gdp-add-gif-input").is(":focus")){
+            //input and text area has focus
             $(this).remove();
-        });
+        }
+    });
 
     // div containing the GIF dancer thumbnails
     var gdpAddDancerList = $('<div class="gdp-menu-list"></div>');
@@ -211,10 +228,32 @@ function createAddDancerMenu() {
 
     // append the thumbnail list to the screen
     gdpAddDancerMenu.append(gdpAddDancerList);
+    var addGif =    "<div id='gdp-add-gif-wrapper'><input type='text' align='left'" +
+                    " placeholder='Add a custom gif URL' id='gdp-add-gif-input'></input>" +
+                    "<div id='gdp-add-gif-button'>Submit</div></div>";
+    gdpAddDancerMenu.append(addGif);
     $('body').append(gdpAddDancerMenu);
+    $("#gdp-add-gif-button").click(function(){
+        addGiphy();
+    });
 }
 
-// ------------------------------------------------------------------------- //
+// ---------------------Take In Custom Gifs from Giphy---------------------- //
+
+/*
+    Listen for an enter event or click Submit
+*/
+$(document).keypress(function(e) {
+    if(e.which == 13 && $("#gdp-add-gif-input").is(":focus")) {
+        //pressed enter while focused
+        $('#gdp-add-gif-button').click();
+    }
+});
+function addGiphy(){
+   var link = $("#gdp-add-gif-input").val(); //get the link from the input
+   $('.gdp-menu').remove();
+   createGIFDancer("",link);
+}
 
 // ---------------------- create the SELECT SONG menu ---------------------- //
 
@@ -231,56 +270,56 @@ function createSongOption(songName) {
 }
 
 /* Create the SELECT SONG menu, containing a list of available GDP songs to
-   play in the background. On click of a song option, the menu will be removed
-   and the new song will be played. Clicking on anything besides the song
-   options will close the SELECT SONG menu without playing a new song */
-   function createSelectSongMenu() {
+play in the background. On click of a song option, the menu will be removed
+and the new song will be played. Clicking on anything besides the song
+options will close the SELECT SONG menu without playing a new song */
+function createSelectSongMenu() {
 
-       // a list to hold the DOM elements of the song options
-       var songOptions = [];
+    // a list to hold the DOM elements of the song options
+    var songOptions = [];
 
-       // loop through all of the GDP song names and add the song option
-       // DOM element to the songOptions list
-       for (var i = 0; i < gdpMedia.gdpPlaylist.length; i++) {
-           songOptions.push(createSongOption(gdpMedia.gdpPlaylist[i]));
-       }
+    // loop through all of the GDP song names and add the song option
+    // DOM element to the songOptions list
+    for (var i = 0; i < gdpMedia.gdpPlaylist.length; i++) {
+        songOptions.push(createSongOption(gdpMedia.gdpPlaylist[i]));
+    }
 
-       // transparent full screen div that contains the list of song options,
-       // but will close on click
-       var gdpSelectSongMenu = $('<div class="gdp-menu"></div>')
-           .css('z-index', maxZIndex)
-           .click(function() {
-               $(this).remove();
-           });
+    // transparent full screen div that contains the list of song options,
+    // but will close on click
+    var gdpSelectSongMenu = $('<div class="gdp-menu"></div>')
+    .css('z-index', maxZIndex)
+    .click(function() {
+        $(this).remove();
+    });
 
-       // div containing the song options
-       var gdpSelectSongList = $('<div class="gdp-menu-list"></div>');
-       // loop through the song options list and append each song option
-       // to the menu list
-       for (var i = 0; i < songOptions.length; i++) {
-           gdpSelectSongList.append(songOptions[i]);
-       }
+    // div containing the song options
+    var gdpSelectSongList = $('<div class="gdp-menu-list"></div>');
+    // loop through the song options list and append each song option
+    // to the menu list
+    for (var i = 0; i < songOptions.length; i++) {
+        gdpSelectSongList.append(songOptions[i]);
+    }
 
-       // append the song option list to the screen
-       gdpSelectSongMenu.append(gdpSelectSongList);
-       $('body').append(gdpSelectSongMenu);
-   }
+    // append the song option list to the screen
+    gdpSelectSongMenu.append(gdpSelectSongList);
+    $('body').append(gdpSelectSongMenu);
+}
 
 
 // ------------------------------------------------------------------------- //
 
 /******************************************************************************
- * STARTING AND STOPPING THE PARTY
- *****************************************************************************/
+* STARTING AND STOPPING THE PARTY
+*****************************************************************************/
 
 /* Return true if the part is on, meaning the main menu is currently
-   displayed on the screen. Otherwise, return false */
+displayed on the screen. Otherwise, return false */
 function isPartyOn() {
     return $('.gdp-main-menu').length > 0;
 }
 
 /* Append the main menu to the screen, start the music, and append the default
-   GIF dancers to the screen */
+GIF dancers to the screen */
 function startTheParty() {
     createMainMenu();
     gdpMedia.selectSong('singalong');
@@ -288,7 +327,7 @@ function startTheParty() {
 }
 
 /* Remove the main menu, stop the music, and remove the GIF dancers, ADD
-   DANCER menu, and SELECT SONG menu */
+DANCER menu, and SELECT SONG menu */
 function stopTheParty() {
     $('.gdp-main-menu').remove();
     gdpMedia.stopAudio();
@@ -297,8 +336,8 @@ function stopTheParty() {
 }
 
 /******************************************************************************
- * LISTENERS
- *****************************************************************************/
+* LISTENERS
+*****************************************************************************/
 
 /* Set a listener for messages requesting to start and stop the GDP */
 chrome.runtime.onMessage.addListener(function(request, sender) {
