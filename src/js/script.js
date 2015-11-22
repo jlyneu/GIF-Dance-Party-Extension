@@ -231,7 +231,7 @@ function createAddDancerMenu() {
     gdpAddDancerMenu.append(gdpAddDancerList);
     var addGif = ["<div id='gdp-add-gif-wrapper' class='gdp-add-custom-wrapper'>",
                        "<input type='text' align='left' ",
-                           "placeholder='Add a custom song URL' id='gdp-add-gif-input' ",
+                           "placeholder='Add a custom GIF URL' id='gdp-add-gif-input' ",
                            "class='gdp-add-custom-input'></input>" +
                        "<div id='gdp-add-gif-button' class='gdp-add-custom-button'>Submit</div>",
                    "</div>"].join('');
