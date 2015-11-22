@@ -195,6 +195,10 @@ gdpMedia =  {
             imgur: 'wETEb4l',
             giphy: 'l41lI6dIfDLLMsNjy'
         },
+        lisa: {
+            imgur: 'hf2s0Ej',
+            giphy: 'NfeV16w5ZvaaQ'
+        },
         maranda: {
             imgur: 'zZrLAyH',
             giphy: '26BkNCYFWc3YrUSFa'
@@ -223,10 +227,6 @@ gdpMedia =  {
             imgur: 'TEfISD0',
             giphy: '3oEduGtSMcWBJPSDhC'
         },
-        nudeflames: {
-            imgur: 'YWBRjHm',
-            giphy: 'l41lN2q4zQyfvtyV2'
-        },
         obama: {
             imgur: 'lKpfbv1',
             giphy: 'l41lSXRKx8csZ1kic'
@@ -247,6 +247,10 @@ gdpMedia =  {
             imgur: 'jRoMC6Y',
             giphy: 'l41m3WCro5TSN7Bp6'
         },
+        pikachu: {
+            imgur: '3nnb34A',
+            giphy: 'zEBHffYMPaIwM'
+        },
         pilboy: {
             imgur: '0iBVON5',
             giphy: '3oEdv3Z6pdRKmTuJY4'
@@ -254,10 +258,6 @@ gdpMedia =  {
         pixelly: {
             imgur: 'Qw2O47x',
             giphy: '3oEduPmVVIex3w0Oys'
-        },
-        pizza: {
-            imgur: 'cdLlK1q',
-            giphy: '3oEdv5pg8ivCpQZAWI'
         },
         ponyshuffle: {
             imgur: '6frE5RS',
@@ -315,6 +315,10 @@ gdpMedia =  {
             imgur: 'BeH7q4x',
             giphy: '3oEduTxikdl6659Tws'
         },
+        snoop: {
+            imgur: 'u82kPtm',
+            giphy: 'O0Xo8Tpk5QxTW'
+        },
         speakerhead: {
             imgur: '7Hy7lrN',
             giphy: 'l41lTFERkZe2H9FOo'
@@ -330,10 +334,6 @@ gdpMedia =  {
         squidword: {
             imgur: 'v9pzZCM',
             giphy: '26BkMz3mtQqMl6Dw4'
-        },
-        stripper1: {
-            imgur: 'B1mcq6w',
-            giphy: '3oEdv72whCo2Fi8WAw'
         },
         stripper2: {
             imgur: 'lMp46OR',
