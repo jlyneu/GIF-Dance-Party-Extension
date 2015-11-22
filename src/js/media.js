@@ -5,7 +5,7 @@
 gdpMedia =  {
     /* List of GIF Dance Party song titles */
     gdpPlaylist: [
-        'bazz', 'bubblebutt', 'fatboy', 'grounded',
+        'no music', 'bazz', 'bubblebutt', 'fatboy', 'grounded',
         'halffull', 'hotlinebling', 'nahnahnah', 'singalong', 'trololo',
         'twist', 'walkmen', 'wegotyou'
     ],
@@ -391,7 +391,6 @@ gdpMedia =  {
     /* Send a message to the background script to play the song with the
        given name */
     selectSong: function(name, isCustom) {
-        console.log(name);
         chrome.runtime.sendMessage({
             type: "songName",
             songName: name,
