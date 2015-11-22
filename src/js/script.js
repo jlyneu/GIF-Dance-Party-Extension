@@ -363,6 +363,7 @@ function startTheParty() {
     createMainMenu();
     gdpMedia.selectSong('singalong');
     createGIFDancer('pumpgirl');
+    gdpMedia.unloadAudio();
 }
 
 /* Remove the main menu, stop the music, and remove the GIF dancers, ADD
@@ -372,6 +373,7 @@ function stopTheParty() {
     gdpMedia.stopAudio();
     $('.gdp-dancer').remove();
     $('.gdp-menu').remove();
+    $(window).off('unload');
 }
 
 /******************************************************************************
@@ -394,6 +396,3 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
         stopTheParty();
     }
 });
-
-/* Set the listener to stop playing audio after leaving the current page */
-$(document).ready(gdpMedia.unloadAudio);
