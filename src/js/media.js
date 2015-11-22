@@ -159,10 +159,6 @@ gdpMedia =  {
             imgur: 'tCmveGx',
             giphy: '26BkLAMkUUe4Kjom4'
         },
-        hellicopter: {
-            imgur: 'NiEBM1c',
-            giphy: 'l41lR1gaWyabZeLrW'
-        },
         hipdog: {
             imgur: 'eMs7spK',
             giphy: '3oEdvaWNO2CrIE4fh6'
@@ -178,6 +174,10 @@ gdpMedia =  {
         humpery: {
             imgur: 'PXplXOH',
             giphy: 'l41lFnwluQ94HmMuY'
+        },
+        llama: {
+            imgur: 'Nj46dlb',
+            giphy: 'mGWj9gZG7eFCE'
         },
         jason: {
             imgur: 'YTLTpTk',
