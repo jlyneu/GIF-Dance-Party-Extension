@@ -1,7 +1,8 @@
 /******************************************************************************
  * INCLUDES
  *****************************************************************************/
- $('head').append('<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"></link>');
+ $('head').append('<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"></link>')
+    .append("<link href='https://fonts.googleapis.com/css?family=Hammersmith+One' rel='stylesheet' type='text/css'>");
 
 /******************************************************************************
  * CONSTANTS
@@ -149,8 +150,8 @@ function createMainMenu() {
 
     var menuHtml = [
         '<div class="gdp-main-menu">',
-        '<div class="gdp-add-dancer">ADD DANCER</div>',
-        '<div class="gdp-select-song">SELECT SONG</div>',
+        '<div class="gdp-add-dancer gdp-main-menu-btn">ADD DANCER</div>',
+        '<div class="gdp-select-song gdp-main-menu-btn">SELECT SONG</div>',
         '</div>'
     ].join('');
 
