@@ -72,6 +72,7 @@ function createGIFDancer(dancerName) {
     // On mouse down on the RESIZE button, allow the user to resize the GIF
     var resizeDiv = $('<div class="gdp-opt gdp-bottom-right">RESIZE</div>');
 
+    // Create a div to hold the top dancer options above the GIF itself
     var topOptDiv = $('<div class="gdp-top-opt"></div>')
         .append(closeDiv)
         .append(flipDiv)
@@ -80,40 +81,49 @@ function createGIFDancer(dancerName) {
 
     // --------------------------------------------------------------------- //
 
+    // create an div that resizes with the dancer GIF
     var resizableDiv = $('<div class="gdp-resizable"></div>')
-        // set the z-index such that this dancer is in front
-        .css('z-index', frontZIndex)
         // append the buttons for the dancer options
         .append(topOptDiv)
         .append(cloneDiv)
         .append(resizeDiv)
         // append the actual GIF dancer
         .append(gifImg)
-        // allow the user to resize this div
-        .resizable({
-            // alsoResize: function() {
-            //     return $(this).find('img');
-            // }
-        })
         // on hover, display the dancer options
         .hover(function() {
             $(this).css('background-color', 'rgba(0,0,0,.3)');
-            $(this).find('.gdp-opt').css('color', 'rgba(255,255,255,1)');
+            $(this).find('.gdp-opt').css('display', 'inline-block');
+            $(this).find('.ui-resizable-handle').css('display', 'block');
         }, function() {
             $(this).css('background-color', 'rgba(0,0,0,0)');
-            $(this).find('.gdp-opt').css('color', 'rgba(0,0,0,0)');
+            $(this).find('.gdp-opt').css('display', 'none');
+            $(this).find('.ui-resizable-handle').css('display', 'none');
         });
 
     // create the dancer div containing the GIF and the various dancer options
     var dancerDiv = $('<div class="gdp-dancer"></div>')
         // allow the user to drag this div around the screen
         .draggable()
+        .css('z-index', frontZIndex)
         .append(resizableDiv);
 
     // increment the frontZIndex value so the next created GIF will be in front
     frontZIndex++;
     // append the dancer to the screen
     $('body').append(dancerDiv);
+
+    // set resizing functionality. Currently does so for all dancers,
+    // but it would be great to find a different solution
+    $.each($('.gdp-resizable'), function(index, value) {
+        $(this).resizable({
+            alsoResize: $(this).find('img'),
+            aspectRatio: true
+        })
+    });
+
+    // hide the jQuery UI resize handle upon creation
+    dancerDiv.find('.ui-resizable-handle').css('display', 'none');
+
 }
 
 /******************************************************************************

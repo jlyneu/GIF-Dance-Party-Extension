@@ -53,7 +53,7 @@
 }
 .gdp-opt {
     color: white;
-    display: inline-block;
+    display: none;
     font-weight: bold;
 }
 .gdp-select-song {
