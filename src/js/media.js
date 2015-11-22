@@ -139,9 +139,9 @@ gdpMedia =  {
             imgur: '0oluliM',
             giphy: 'l41lIyJ7mUr60iBkA'
         },
-        glitchtwist: {
-            imgur: 'WuctrmQ',
-            giphy: '3oEduYBI1JtL8FjhqU'
+        hotline: {
+            imgur: 'y9SXLG0',
+            giphy: '3o85xxzPPcpc2BfAys'
         },
         greenlady: {
             imgur: 't8qX9Q2',
