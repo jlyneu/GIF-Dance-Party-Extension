@@ -300,7 +300,7 @@ function createSelectSongMenu() {
     });
 
     // div containing the song options
-    var gdpSelectSongList = $('<div class="gdp-menu-list gdp-song-list"></div>');
+    var gdpSelectSongList = $('<div class="gdp-menu-list"></div>');
     // loop through the song options list and append each song option
     // to the menu list
     for (var i = 0; i < songOptions.length; i++) {

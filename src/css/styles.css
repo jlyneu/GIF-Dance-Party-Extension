@@ -94,9 +94,6 @@
     display: none;
     font-weight: bold;
 }
-.gdp-song-list {
-    height: 80%;
-}
 .gdp-song-option {
     background-color: rgb(131, 0, 168);
     border-radius: 5px;
