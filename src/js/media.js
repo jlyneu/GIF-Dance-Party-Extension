@@ -6,9 +6,26 @@ gdpMedia =  {
     /* List of GIF Dance Party song titles */
     gdpPlaylist: [
         'no music', 'bazz', 'bubblebutt', 'fatboy', 'grounded',
-        'halffull', 'hotlinebling', 'nahnahnah', 'singalong', 'trololo',
-        'twist', 'walkmen', 'wegotyou'
+        'halffull', 'hotline bling', 'nahnahnah', 'singalong', 'trololo',
+        'twist', 'walkmen', 'wegotyou', 'sandstorm', 'whats going on'
     ],
+    gdpSongMap:{
+        'no music': 'nomusic',
+        'bazz': 'http://gifdanceparty.giphy.com/music/bazz.ogg',
+        'bubblebutt': 'http://gifdanceparty.giphy.com/music/bubblebutt.ogg',
+        'fatboy': 'http://gifdanceparty.giphy.com/music/fatboy.ogg',
+        'grounded': 'http://gifdanceparty.giphy.com/music/grounded.ogg',
+        'halffull': 'http://gifdanceparty.giphy.com/music/halffull.ogg',
+        'nahnahnah': 'http://gifdanceparty.giphy.com/music/nahnahnah.ogg',
+        'singalong': 'http://gifdanceparty.giphy.com/music/singalong.ogg',
+        'trololo': 'http://gifdanceparty.giphy.com/music/trololo.ogg',
+        'twist': 'http://gifdanceparty.giphy.com/music/twist.ogg',
+        'walkmen': 'http://gifdanceparty.giphy.com/music/walkmen.ogg',
+        'wegotyou': 'http://gifdanceparty.giphy.com/music/wegotyou.ogg',
+        'hotline bling': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/hotlineloop.wav',
+        'sandstorm': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/sandstorm.wav',
+        'whats going on': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/heman.wav'
+    },
     /* Mapping from dancer names to Imgur thumbnail and Giphy dancer ids */
     mediaIds: {
         '8bitcarlton': {
@@ -323,9 +340,9 @@ gdpMedia =  {
             imgur: '7Hy7lrN',
             giphy: 'l41lTFERkZe2H9FOo'
         },
-        spinglitch: {
-            imgur: 'dt4lS4G',
-            giphy: 'l41lYuEqwTOWIkFPy'
+        leftshark: {
+            imgur: 'glPurdO',
+            giphy: '3o85xBH1NjrRfa8kPm'
         },
         spongeybob: {
             imgur: '6AXEklV',
@@ -394,7 +411,8 @@ gdpMedia =  {
         chrome.runtime.sendMessage({
             type: "songName",
             songName: name,
-            isCustom: isCustom
+            isCustom: isCustom,
+            songUrl: gdpMedia.gdpSongMap[name]
         });
     },
     /* Send a message to the background script to stop playing audio */
