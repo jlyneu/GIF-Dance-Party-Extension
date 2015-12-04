@@ -55,10 +55,6 @@ gdpMedia =  {
             imgur: 'WEl9Npv',
             giphy: 'l41lPlDTLS8NdfVRe'
         },
-        drakeWrist: {
-            imgur: 'y9SXLG0',
-            giphy: 'xTiTnLOTgCWEu3akr6'
-        },
         brian: {
             imgur: 'mcVtWQT',
             giphy: 'l41lFG8HaIVcPt9QY'
@@ -103,9 +99,17 @@ gdpMedia =  {
             imgur: 'Q6r1gYp',
             giphy: 'l41lIG49uUKFm1sR2'
         },
-        heman: {
-            imgur: '1GZgAQV',
-            giphy: '3o85xEQknNotn5dXfG'
+        drakeHotline: {
+            imgur: 'wTATJ1T',
+            giphy: '3oEduGBEzAuZHR9jwc'
+        },
+        drakePush: {
+            imgur: '8zy3MQA',
+            giphy: '3oEduLLkRxHa9LrwTS'
+        },
+        drakeWrist: {
+            imgur: 'jZUSVbA',
+            giphy: 'xTiTnLOTgCWEu3akr6'
         },
         fabio: {
             imgur: '320x7kR',
@@ -123,10 +127,6 @@ gdpMedia =  {
             imgur: 'FSvV7is',
             giphy: 'l41lPqa3dpN6ete3m'
         },
-        drakePush: {
-            imgur: 'y9SXLG0',
-            giphy: '3oEduLLkRxHa9LrwTS'
-        },
         gene: {
             imgur: 'nfO1s5a',
             giphy: '3oEdv6b7ul6xu0qkx2'
@@ -138,10 +138,6 @@ gdpMedia =  {
         girlstep: {
             imgur: '0oluliM',
             giphy: 'l41lIyJ7mUr60iBkA'
-        },
-        drakeHotline: {
-            imgur: 'y9SXLG0',
-            giphy: '3oEduGBEzAuZHR9jwc'
         },
         greenlady: {
             imgur: 't8qX9Q2',
@@ -158,6 +154,10 @@ gdpMedia =  {
         headspin: {
             imgur: 'tCmveGx',
             giphy: '26BkLAMkUUe4Kjom4'
+        },
+        heman: {
+            imgur: 'LxPW2rQ',
+            giphy: '3o85xEQknNotn5dXfG'
         },
         hipdog: {
             imgur: 'eMs7spK',
