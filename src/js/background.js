@@ -2,7 +2,7 @@
 var defaultSongName = 'singalong';
 // initialize the javascript Audio object
 var gdpAudio = new Audio();
-gdpAudio.src = getAudioUrl(defaultSongName);
+gdpAudio.src = 'http://gifdanceparty.giphy.com/music/singalong.ogg';
 
 // get the url for the audio from the gdp website
 function getAudioUrl(songName) {
@@ -38,13 +38,10 @@ chrome.runtime.onMessage.addListener(
         }
         // incoming message to play a particular song
         else if (request.type === "songName") {
-            if (request.songName === "hotlinebling") {
-                gdpAudio.src = "http://picosong.com/media/songs/45c6683c361746239d1abb4adccd0f23.mp3";
-            }
-            else if (request.isCustom) {
+            if (request.isCustom) {
                 gdpAudio.src = request.songName;
             } else {
-                gdpAudio.src = getAudioUrl(request.songName);
+                gdpAudio.src = request.songUrl;
             }
             gdpAudio.loop = true;
             gdpAudio.play();
@@ -52,7 +49,7 @@ chrome.runtime.onMessage.addListener(
         } else if (request.type === "stopAudio") {
             gdpAudio.pause();
             gdpAudio.currentTime = 0;
-            gdpAudio.src = getAudioUrl(defaultSongName);
+            gdpAudio.src = request.songUrl;
         }
     }
 )
