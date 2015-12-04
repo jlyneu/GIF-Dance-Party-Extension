@@ -176,12 +176,16 @@ dancer framed by a white circle with a black border */
 function createThumbnail(dancerName, imageUrl) {
 
     var dancerThumbnailWrapper = $('<div class="gdp-thumbnail-wrapper"></div>');
-    var dancerThumbnailImg = $('<img class="gdp-thumbnail-img" src="' + imageUrl + '.png" />');
+    var dancerThumbnailImg = $('<img class="gdp-thumbnail-img" src="' + imageUrl + '" />');
 
     // on click of the thumbnail, remove the ADD DANCER menu and append the
     // corresponding dancer GIF to the top left corner of the screen
     dancerThumbnailImg.click(function() {
-        createGIFDancer(dancerName);
+        if (dancerName) {
+            createGIFDancer(dancerName);
+        } else {
+            createGIFDancer("", imageUrl);
+        }
         $('.gdp-add-dancer-menu').remove();
     });
 
@@ -208,37 +212,51 @@ function createAddDancerMenu() {
         }
     }
 
-    // transparent full screen div that contains the list of thumbnails, but
-    // will close on click
-    var gdpAddDancerMenu = $('<div class="gdp-menu"></div>')
-    .css('z-index', maxZIndex)
-    .click(function() {
-        if(!$("#gdp-add-gif-input").is(":focus")){
-            //input and text area has focus
-            $(this).remove();
+    chrome.storage.sync.get("customDancers", function(storageItem) {
+        var customDancers = storageItem.customDancers;
+        if (customDancers && customDancers.length > 0) {
+            for (var i = 0; i < customDancers.length; i++) {
+                var currentDancer = customDancers[i];
+                thumbnailDivs.push(createThumbnail("", currentDancer));
+            }
+        } else {
+            var storageObj = {}
+            storageObj["customDancers"] = []
+            chrome.storage.sync.set(storageObj);
         }
-    });
 
-    // div containing the GIF dancer thumbnails
-    var gdpAddDancerList = $('<div class="gdp-menu-list"></div>');
-    // loop through the GIF dancer thumbnail list and append each thumbnail
-    // to the menu list
-    for (var i = 0; i < thumbnailDivs.length; i++) {
-        gdpAddDancerList.append(thumbnailDivs[i]);
-    }
+        // transparent full screen div that contains the list of thumbnails, but
+        // will close on click
+        var gdpAddDancerMenu = $('<div class="gdp-menu"></div>')
+        .css('z-index', maxZIndex)
+        .click(function() {
+            if(!$("#gdp-add-gif-input").is(":focus")){
+                //input and text area has focus
+                $(this).remove();
+            }
+        });
 
-    // append the thumbnail list to the screen
-    gdpAddDancerMenu.append(gdpAddDancerList);
-    var addGif = ["<div id='gdp-add-gif-wrapper' class='gdp-add-custom-wrapper'>",
-                       "<input type='text' align='left' ",
-                           "placeholder='Add a custom GIF URL' id='gdp-add-gif-input' ",
-                           "class='gdp-add-custom-input'></input>" +
-                       "<div id='gdp-add-gif-button' class='gdp-add-custom-button'>Submit</div>",
-                   "</div>"].join('');
-    gdpAddDancerMenu.append(addGif);
-    $('body').append(gdpAddDancerMenu);
-    $("#gdp-add-gif-button").click(function(){
-        addGiphy();
+        // div containing the GIF dancer thumbnails
+        var gdpAddDancerList = $('<div class="gdp-menu-list"></div>');
+        // loop through the GIF dancer thumbnail list and append each thumbnail
+        // to the menu list
+        for (var i = 0; i < thumbnailDivs.length; i++) {
+            gdpAddDancerList.append(thumbnailDivs[i]);
+        }
+
+        // append the thumbnail list to the screen
+        gdpAddDancerMenu.append(gdpAddDancerList);
+        var addGif = ["<div id='gdp-add-gif-wrapper' class='gdp-add-custom-wrapper'>",
+                           "<input type='text' align='left' ",
+                               "placeholder='Add a custom GIF URL' id='gdp-add-gif-input' ",
+                               "class='gdp-add-custom-input'></input>" +
+                           "<div id='gdp-add-gif-button' class='gdp-add-custom-button'>Submit</div>",
+                       "</div>"].join('');
+        gdpAddDancerMenu.append(addGif);
+        $('body').append(gdpAddDancerMenu);
+        $("#gdp-add-gif-button").click(function(){
+            addGiphy();
+        });
     });
 }
 
@@ -253,11 +271,26 @@ $(document).keypress(function(e) {
         $('#gdp-add-gif-button').click();
     }
 });
+function saveGiphy(url) {
+    chrome.storage.sync.get("customDancers", function(storageItem) {
+        var customDancers = storageItem["customDancers"];
+        var storageObj = {};
+        if (customDancers) {
+            customDancers.push(url);
+            storageObj["customDancers"] = customDancers;
+            chrome.storage.sync.set(storageObj)
+        } else {
+            storageObj["customDancers"] = [];
+            chrome.storage.sync.set(storageObj);
+        }
+    });
+}
 function addGiphy(){
    var link = $("#gdp-add-gif-input").val(); //get the link from the input
    var ending = link.slice(-4);
    if(ending == ".gif"){
        $('.gdp-menu').remove();
+       saveGiphy(link);
        createGIFDancer("",link);
    }else{
        alert("URL did not point to a .GIF");
