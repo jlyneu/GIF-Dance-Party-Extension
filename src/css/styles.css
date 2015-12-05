@@ -12,11 +12,11 @@
     cursor: pointer;
 }
 .gdp-add-custom-input {
-    width: 300px;
-    font-family: 'Hammersmith One';
-    height:30px;
-    display: inline-block;
-    padding:10px;
+    width: 300px !important;
+    font-family: 'Hammersmith One' !important;
+    height:30px !important;
+    display: inline-block !important;
+    padding:10px !important;
 }
 .gdp-add-custom-wrapper {
     position: fixed;
@@ -121,11 +121,19 @@
     background-color: rgb(244, 37, 112);
     border-radius: 50%;
     box-shadow: rgb(102, 102, 102) 1px 1px 1px;
+    box-sizing: content-box;
     color: white;
+    font-family: 'Hammersmith One';
+    font-size: 13px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
     height: 15px;
-    left: 45px;
+    left: 0;
+    line-height:normal;
     padding: 10px;
     position: relative;
+    text-align: center;
     top: 25px;
     width: 15px;
 }
