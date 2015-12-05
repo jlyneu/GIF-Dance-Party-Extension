@@ -37,6 +37,9 @@
     position: absolute;
     right: 10px;
 }
+.gdp-custom-thumbnail {
+    margin-top: -35px !important;
+}
 .gdp-dancer {
     cursor: hand;
     cursor: pointer;
@@ -114,11 +117,22 @@
     height: 100px;
     width: 100px;
 }
+.gdp-thumbnail-delete {
+    background-color: rgb(244, 37, 112);
+    border-radius: 50%;
+    box-shadow: rgb(102, 102, 102) 1px 1px 1px;
+    color: white;
+    height: 15px;
+    left: 45px;
+    padding: 10px;
+    position: relative;
+    top: 25px;
+    width: 15px;
+}
 .gdp-thumbnail-wrapper {
     display: inline-block;
     height: 100px;
     margin: 0 5px 5px 0;
-    margin-right: 5px;
     width: 100px;
 }
 .gdp-top-left {

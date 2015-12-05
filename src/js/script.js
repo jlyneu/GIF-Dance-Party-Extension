@@ -177,6 +177,21 @@ function createThumbnail(dancerName, imageUrl) {
 
     var dancerThumbnailWrapper = $('<div class="gdp-thumbnail-wrapper"></div>');
     var dancerThumbnailImg = $('<img class="gdp-thumbnail-img" src="' + imageUrl + '" />');
+    if (!dancerName) {
+        dancerThumbnailWrapper.addClass('gdp-custom-thumbnail');
+        var dancerThumbnailDelete = $('<div class="gdp-thumbnail-delete">X</div>').css("z-index", maxZIndex).click(function() {
+            var customDancerIndex = $('.gdp-custom-thumbnail').index($(this).parent());
+            chrome.storage.sync.get("customDancers", function(storageItem){
+                storageItem.customDancers.splice(customDancerIndex, 1);
+                var storageObj = {};
+                storageObj["customDancers"] = storageItem.customDancers;
+                chrome.storage.sync.set(storageObj);
+                createAddDancerMenu();
+            });
+            $(this).parent().remove();
+        });
+        dancerThumbnailWrapper.append(dancerThumbnailDelete);
+    }
 
     // on click of the thumbnail, remove the ADD DANCER menu and append the
     // corresponding dancer GIF to the top left corner of the screen
