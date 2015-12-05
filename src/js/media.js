@@ -352,9 +352,9 @@ gdpMedia =  {
             imgur: 'v9pzZCM',
             giphy: '26BkMz3mtQqMl6Dw4'
         },
-        stripper2: {
-            imgur: 'lMp46OR',
-            giphy: '3oEduEd9hx2PyRv0pq'
+        shakeitoff: {
+            imgur: '75q7daB',
+            giphy: '26tP3JkdNpeU1k8Tu'
         },
         tej: {
             imgur: 'Q49aPYo',
