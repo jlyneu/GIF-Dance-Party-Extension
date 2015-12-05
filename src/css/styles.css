@@ -123,6 +123,7 @@
     box-shadow: rgb(102, 102, 102) 1px 1px 1px;
     box-sizing: content-box;
     color: white;
+    float: right;
     font-family: 'Hammersmith One';
     font-size: 13px;
     font-style: normal;
