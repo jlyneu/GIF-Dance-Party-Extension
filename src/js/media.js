@@ -7,7 +7,7 @@ gdpMedia =  {
     gdpPlaylist: [
         'no music', 'bazz', 'bubblebutt', 'fatboy', 'grounded',
         'halffull', 'hotline bling', 'nahnahnah', 'singalong', 'trololo',
-        'twist', 'walkmen', 'wegotyou', 'sandstorm', 'whats going on'
+        'twist', 'walkmen', 'wegotyou', 'sandstorm', 'whats going on', 'shake it off'
     ],
     gdpSongMap:{
         'no music': 'nomusic',
@@ -24,7 +24,8 @@ gdpMedia =  {
         'wegotyou': 'http://gifdanceparty.giphy.com/music/wegotyou.ogg',
         'hotline bling': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/hotlineloop.wav',
         'sandstorm': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/sandstorm.wav',
-        'whats going on': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/heman.wav'
+        'whats going on': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/heman.wav',
+        'shake it off': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/Taylor_shake_it_off.wav',
     },
     /* Mapping from dancer names to Imgur thumbnail and Giphy dancer ids */
     mediaIds: {
