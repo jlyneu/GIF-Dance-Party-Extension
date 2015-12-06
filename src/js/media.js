@@ -53,9 +53,17 @@ gdpMedia =  {
             imgur: '7KW1zWk',
             giphy: '3oEduP15LEqQfXJCNy'
         },
+        yoshi: {
+            imgur: 'ENUYNWU',
+            giphy: '9OIXjveDvpGRW'
+        },
         blob: {
             imgur: 'P7meKeB',
             giphy: 'l41lOD9cTj6YbmcX6'
+        },
+        bb: {
+            imgur: 'zhtTJNv',
+            giphy: 'eEbiAqk9YUT5e'
         },
         bmo: {
             imgur: 'Q6Jyks5',
@@ -77,6 +85,10 @@ gdpMedia =  {
             imgur: 'fn0xLOv',
             giphy: 'l41lYdZg4lDWCYKjK'
         },
+        pooh: {
+            imgur: '1DXTA1I',
+            giphy: 'wjIDrGKbvuGxW'
+        },
         carlton: {
             imgur: 'uF179oM',
             giphy: '3oEduT6H7fftjTic2k'
@@ -97,6 +109,10 @@ gdpMedia =  {
             imgur: 'Q6r1gYp',
             giphy: 'l41lIG49uUKFm1sR2'
         },
+        nyan: {
+            imgur: 'nxCxp6u',
+            giphy: 'WC0DCFkLq4faU'
+        },
         drakeHotline: {
             imgur: 'wTATJ1T',
             giphy: '3oEduGBEzAuZHR9jwc'
@@ -116,6 +132,10 @@ gdpMedia =  {
         fatspidey: {
             imgur: '5GZYEmt',
             giphy: '3oEduV5zJRtZA20V32'
+        },
+        kenny: {
+            imgur: 'LKzQ7KE',
+            giphy: '14nrpQCJ5iagdG'
         },
         foreveralone: {
             imgur: 'jgOvt9T',
