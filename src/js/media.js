@@ -6,7 +6,7 @@ gdpMedia =  {
     /* List of GIF Dance Party song titles */
     gdpPlaylist: [
         'no music', 'bazz', 'bubblebutt', 'fatboy', 'grounded',
-        'halffull', 'hotline bling', 'nahnahnah', 'singalong', 'trololo',
+        'halffull', 'hotline', 'nahnahnah', 'singalong', 'trololo',
         'twist', 'walkmen', 'wegotyou', 'sandstorm', 'whats going on', 'shake it off'
     ],
     gdpSongMap:{
@@ -22,7 +22,7 @@ gdpMedia =  {
         'twist': 'http://gifdanceparty.giphy.com/music/twist.ogg',
         'walkmen': 'http://gifdanceparty.giphy.com/music/walkmen.ogg',
         'wegotyou': 'http://gifdanceparty.giphy.com/music/wegotyou.ogg',
-        'hotline bling': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/hotlineloop.wav',
+        'hotline': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/hotlineloop.wav',
         'sandstorm': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/sandstorm.wav',
         'whats going on': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/heman.wav',
         'shake it off': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/Taylor_shake_it_off.wav',
@@ -49,17 +49,21 @@ gdpMedia =  {
             imgur: 'Li3pOWH',
             giphy: '3oEduNh73pM45xDSNi'
         },
-        bananabounce: {
-            imgur: 'Ky3jiGQ',
-            giphy: '3oEdv13hKEjxNrEnU4'
-        },
         bear: {
             imgur: '7KW1zWk',
             giphy: '3oEduP15LEqQfXJCNy'
         },
+        yoshi: {
+            imgur: 'ENUYNWU',
+            giphy: '9OIXjveDvpGRW'
+        },
         blob: {
             imgur: 'P7meKeB',
             giphy: 'l41lOD9cTj6YbmcX6'
+        },
+        bb: {
+            imgur: 'zhtTJNv',
+            giphy: 'eEbiAqk9YUT5e'
         },
         bmo: {
             imgur: 'Q6Jyks5',
@@ -69,29 +73,21 @@ gdpMedia =  {
             imgur: 'otdi7m9',
             giphy: '3oEduIiEL5hcetXqAE'
         },
-        bones: {
-            imgur: 'WEl9Npv',
-            giphy: 'l41lPlDTLS8NdfVRe'
-        },
         brian: {
             imgur: 'mcVtWQT',
             giphy: 'l41lFG8HaIVcPt9QY'
-        },
-        bunny: {
-            imgur: 'OPfS7wP',
-            giphy: '3oEdv0KXjUeh27nm80'
         },
         bunnyspank: {
             imgur: 'G9Bs0N9',
             giphy: 'l41lNvJ5gkGf0y4Xm'
         },
-        business: {
-            imgur: 'QaSTmdL',
-            giphy: 'l41lYaZWMVzDdSOA0'
-        },
         cact: {
             imgur: 'fn0xLOv',
             giphy: 'l41lYdZg4lDWCYKjK'
+        },
+        pooh: {
+            imgur: '1DXTA1I',
+            giphy: 'wjIDrGKbvuGxW'
         },
         carlton: {
             imgur: 'uF179oM',
@@ -100,10 +96,6 @@ gdpMedia =  {
         charlie: {
             imgur: 'aXXDfwI',
             giphy: '3oEduQkZZDBupCoXU4'
-        },
-        chicken: {
-            imgur: 'Uckh2i8',
-            giphy: '3oEdvbJZiqpNdiI5Bm'
         },
         cowboy: {
             imgur: 'sCxQ7om',
@@ -116,6 +108,10 @@ gdpMedia =  {
         doggy: {
             imgur: 'Q6r1gYp',
             giphy: 'l41lIG49uUKFm1sR2'
+        },
+        nyan: {
+            imgur: 'nxCxp6u',
+            giphy: 'WC0DCFkLq4faU'
         },
         drakeHotline: {
             imgur: 'wTATJ1T',
@@ -137,6 +133,10 @@ gdpMedia =  {
             imgur: '5GZYEmt',
             giphy: '3oEduV5zJRtZA20V32'
         },
+        kenny: {
+            imgur: 'LKzQ7KE',
+            giphy: '14nrpQCJ5iagdG'
+        },
         foreveralone: {
             imgur: 'jgOvt9T',
             giphy: 'l41lWaQCC5Y65ErUQ'
@@ -153,10 +153,6 @@ gdpMedia =  {
             imgur: 'VcNCtEa',
             giphy: 'l41lUNDlC1ka19oU8'
         },
-        girlstep: {
-            imgur: '0oluliM',
-            giphy: 'l41lIyJ7mUr60iBkA'
-        },
         greenlady: {
             imgur: 't8qX9Q2',
             giphy: 'l41lFr6nvWK6foKXe'
@@ -168,10 +164,6 @@ gdpMedia =  {
         victorydance: {
             imgur: 'rbOosYj',
             giphy: 'xTk9ZSHoVA1uODUyoU'
-        },
-        headspin: {
-            imgur: 'tCmveGx',
-            giphy: '26BkLAMkUUe4Kjom4'
         },
         heman: {
             imgur: 'LxPW2rQ',
@@ -221,29 +213,13 @@ gdpMedia =  {
             imgur: 'zZrLAyH',
             giphy: '26BkNCYFWc3YrUSFa'
         },
-        matrix: {
-            imgur: 'o9uEMoW',
-            giphy: '3oEduMJZiPuQIGRkOs'
-        },
         mj: {
             imgur: 'U0TcBG6',
             giphy: '3oEdv8uVwchZIxkJDG'
         },
-        momdance: {
-            imgur: 'M0RSmnl',
-            giphy: '3oEduJHTSEBYzpKCd2'
-        },
-        morpher: {
-            imgur: 'vq20Qxj',
-            giphy: 'l41lZ1fEGsSIdMK88'
-        },
         nerd: {
             imgur: 'S5Wo2T1',
             giphy: 'l41lTnsFgDcDFtiPm'
-        },
-        noshorts: {
-            imgur: 'TEfISD0',
-            giphy: '3oEduGtSMcWBJPSDhC'
         },
         obama: {
             imgur: 'lKpfbv1',
@@ -269,10 +245,6 @@ gdpMedia =  {
             imgur: '3nnb34A',
             giphy: 'zEBHffYMPaIwM'
         },
-        pilboy: {
-            imgur: '0iBVON5',
-            giphy: '3oEdv3Z6pdRKmTuJY4'
-        },
         pixelly: {
             imgur: 'Qw2O47x',
             giphy: '3oEduPmVVIex3w0Oys'
@@ -284,14 +256,6 @@ gdpMedia =  {
         possum: {
             imgur: 'lFPmQrS',
             giphy: '3oEduKLDMtc7jleGgU'
-        },
-        pretzel: {
-            imgur: 'ffv9231',
-            giphy: '3oEdv5NkIKao86MOOY'
-        },
-        psych: {
-            imgur: 'CUnUWId',
-            giphy: 'l41m3eRKjt6thCxOw'
         },
         pumpgirl: {
             imgur: 'GD8TggR',
@@ -324,10 +288,6 @@ gdpMedia =  {
         shawty: {
             imgur: 'stZZLVd',
             giphy: '3oEdv0F6sqE5XCWkCc'
-        },
-        slappy: {
-            imgur: 'kzNQ1og',
-            giphy: 'l41m35UbftOXLeqD6'
         },
         smooch: {
             imgur: 'BeH7q4x',
@@ -381,17 +341,9 @@ gdpMedia =  {
             imgur: 'EjL0GLT',
             giphy: 'l41lQZJYzSqGDWFz2'
         },
-        twerk2: {
-            imgur: 'Wrr23n4',
-            giphy: 'l41lMNq45znehGNck'
-        },
         whiteguy: {
             imgur: '6jYdEPO',
             giphy: '3oEduKmO22VEzbmpLq'
-        },
-        wormlady: {
-            imgur: '8MgJ0S7',
-            giphy: '26BkNgV3XffF5vS2Q'
         },
         yeti: {
             imgur: '4LDzQq6',
