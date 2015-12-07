@@ -63,7 +63,7 @@ gdpMedia =  {
         },
         bb: {
             imgur: 'zhtTJNv',
-            giphy: 'eEbiAqk9YUT5e'
+            giphy: 'xTk9ZJwB1Mg0Jq1KhO'
         },
         bmo: {
             imgur: 'Q6Jyks5',
@@ -135,7 +135,7 @@ gdpMedia =  {
         },
         kenny: {
             imgur: 'LKzQ7KE',
-            giphy: '14nrpQCJ5iagdG'
+            giphy: '3o8doQrgKZa6Ce7jOM'
         },
         foreveralone: {
             imgur: 'jgOvt9T',
@@ -163,7 +163,7 @@ gdpMedia =  {
         },
         victorydance: {
             imgur: 'rbOosYj',
-            giphy: 'xTk9ZSHoVA1uODUyoU'
+            giphy: 'xTka04CfeXMX74iE3m'
         },
         heman: {
             imgur: 'LxPW2rQ',
