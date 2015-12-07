@@ -264,7 +264,7 @@ function createAddDancerMenu() {
         var addGif = ["<div id='gdp-add-gif-wrapper' class='gdp-add-custom-wrapper'>",
                            "<input type='text' align='left' ",
                                "placeholder='Add a custom GIF URL' id='gdp-add-gif-input' ",
-                               "class='gdp-add-custom-input'></input>" +
+                               "class='gdp-add-custom-short-input'></input>" +
                            "<div id='gdp-add-gif-button' class='gdp-add-custom-button'>Submit</div>",
                        "</div>"].join('');
         gdpAddDancerMenu.append(addGif);
@@ -448,9 +448,13 @@ function saveCustomSong(songName, url) {
 function addCustomSong(){
     var name = $("#gdp-add-song-name-input").val(); // get the song name from the input
     var url = $("#gdp-add-song-url-input").val(); //get the link from the input
-    saveCustomSong(name, url);
-    $('.gdp-menu').remove();
-    gdpMedia.selectSong(name, url, true);
+    if(url.indexOf('.mp3') > -1 || url.indexOf('.wav') > -1 || url.indexOf('.ogg') > -1){
+        saveCustomSong(name, url);
+        $('.gdp-menu').remove();
+        gdpMedia.selectSong(name, url, true);
+    }else{
+        alert("URL did not point to a .mp3, .wav, or .ogg");
+    }
 }
 
 /******************************************************************************

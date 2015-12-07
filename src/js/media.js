@@ -6,8 +6,8 @@ gdpMedia =  {
     /* List of GIF Dance Party song titles */
     gdpPlaylist: [
         'no music', 'bazz', 'bubblebutt', 'fatboy', 'grounded',
-        'halffull', 'hotline', 'nahnahnah', 'singalong', 'trololo',
-        'twist', 'walkmen', 'wegotyou', 'sandstorm', 'whats going on', 'shake it off'
+        'halffull', 'hotline', 'nahnahnah', 'sandstorm', 'shake it off', 'singalong', 'trololo',
+        'twist', 'walkmen', 'wegotyou', 'whats going on'
     ],
     gdpSongMap:{
         'no music': 'nomusic',
@@ -314,7 +314,7 @@ gdpMedia =  {
             giphy: '26BkMz3mtQqMl6Dw4'
         },
         shakeitoff: {
-            imgur: '75q7daB',
+            imgur: '8xbnBRN',
             giphy: '26tP3JkdNpeU1k8Tu'
         },
         tej: {
