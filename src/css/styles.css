@@ -12,11 +12,19 @@
     cursor: pointer;
 }
 .gdp-add-custom-input {
-    width: 300px !important;
+    width: 435px !important;
     font-family: 'Hammersmith One' !important;
     height:30px !important;
     display: inline-block !important;
-    padding:10px !important;
+    padding-left:10px !important;
+}
+.gdp-add-custom-short-input {
+    display: inline-block !important;
+    font-family: 'Hammersmith One' !important;
+    height: 30px !important;
+    margin-top: 10px !important;
+    padding-left: 10px !important;
+    width: 365px !important;
 }
 .gdp-add-custom-wrapper {
     position: fixed;
@@ -108,6 +116,21 @@
     font-weight: bold;
     margin: 1px;
     padding: 30px;
+}
+.gdp-song-option-delete {
+    background-color: rgb(244, 37, 112);
+    border-radius: 50%;
+    box-shadow: rgb(102, 102, 102) 1px 1px 1px;
+    box-sizing: content-box;
+    float: right;
+    font-size: 13px;
+    padding: 10px;
+    position: relative;
+    right: -30px;
+    text-align: center;
+    top: -35px;
+    width: 15px;
+    height: 15px;
 }
 .gdp-thumbnail-img {
     background-color: white;

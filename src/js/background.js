@@ -4,11 +4,6 @@ var defaultSongName = 'singalong';
 var gdpAudio = new Audio();
 gdpAudio.src = 'http://gifdanceparty.giphy.com/music/singalong.ogg';
 
-// get the url for the audio from the gdp website
-function getAudioUrl(songName) {
-    return 'http://gifdanceparty.giphy.com/music/' + songName + '.ogg';
-}
-
 // send a message to the currently opened tab
 function messageCurrentTab(message) {
     chrome.tabs.query({
@@ -37,12 +32,8 @@ chrome.runtime.onMessage.addListener(
             }
         }
         // incoming message to play a particular song
-        else if (request.type === "songName") {
-            if (request.isCustom) {
-                gdpAudio.src = request.songName;
-            } else {
-                gdpAudio.src = request.songUrl;
-            }
+        else if (request.type === "songUrl") {
+            gdpAudio.src = request.songUrl;
             gdpAudio.loop = true;
             gdpAudio.play();
             // incoming message to stop audio, aka STOP THE PARTY

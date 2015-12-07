@@ -408,12 +408,11 @@ gdpMedia =  {
     },
     /* Send a message to the background script to play the song with the
        given name */
-    selectSong: function(name, isCustom) {
+    selectSong: function(name, url, isCustom) {
+        console.log([name, url, isCustom]);
         chrome.runtime.sendMessage({
-            type: "songName",
-            songName: name,
-            isCustom: isCustom,
-            songUrl: gdpMedia.gdpSongMap[name]
+            type: "songUrl",
+            songUrl: (!isCustom ? gdpMedia.gdpSongMap[name] : url)
         });
     },
     /* Send a message to the background script to stop playing audio */

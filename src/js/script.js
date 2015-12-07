@@ -316,13 +316,38 @@ function addGiphy(){
 
 /* Return an element representing a song choice for the GDP */
 function createSongOption(songName) {
+    songUrl = null;
+
     var songOption = $('<div class="gdp-song-option">' + songName.toUpperCase() + '</div>');
-    // on click of the song option, remove the SELECT SONG menu and play the
-    // corresponding audio
-    songOption.click(function() {
-        gdpMedia.selectSong(songName);
-        $('.gdp-select-song-menu').remove();
-    });
+    // add delete button for custom song options
+    if (!gdpMedia.gdpSongMap.hasOwnProperty(songName)) {
+        songOption.addClass('gdp-custom-song-option').click(function() {
+            var customSongOptionIndex = $('.gdp-custom-song-option').index($(this));
+            chrome.storage.sync.get("customSongs", function(storageItem){
+                songUrl = storageItem.customSongs[customSongOptionIndex].url;
+                gdpMedia.selectSong(songName, songUrl, true);
+                $('.gdp-select-song-menu').remove();
+            });
+        });
+        var songOptionDelete = $('<div class="gdp-song-option-delete">X</div>').css("z-index", maxZIndex).click(function() {
+            var customSongDeleteOptionIndex = $('.gdp-custom-song-option').index($(this).parent());
+            chrome.storage.sync.get("customSongs", function(storageItem){
+                storageItem.customSongs.splice(customSongDeleteOptionIndex, 1);
+                var storageObj = {};
+                storageObj["customSongs"] = storageItem.customSongs;
+                chrome.storage.sync.set(storageObj);
+                createSelectSongMenu();
+            });
+            $(this).parent().remove();
+        });
+        songOption.append(songOptionDelete);
+    } else {
+        songOption.click(function() {
+            gdpMedia.selectSong(songName, songUrl || "");
+            $('.gdp-select-song-menu').remove();
+        });
+    }
+
     return songOption;
 }
 
@@ -341,41 +366,58 @@ function createSelectSongMenu() {
         songOptions.push(createSongOption(gdpMedia.gdpPlaylist[i]));
     }
 
-    // transparent full screen div that contains the list of song options,
-    // but will close on click
-    var gdpSelectSongMenu = $('<div class="gdp-menu"></div>')
-    .css('z-index', maxZIndex)
-    .click(function() {
-        if(!$("#gdp-add-song-input").is(":focus")){
-            //input and text area has focus
-            $(this).remove();
+    chrome.storage.sync.get("customSongs", function(storageItem) {
+        var customSongs = storageItem.customSongs;
+        if (customSongs && customSongs.length > 0) {
+            for (var i = 0; i < customSongs.length; i++) {
+                var currentSong = customSongs[i];
+                songOptions.push(createSongOption(currentSong.name));
+            }
+        } else {
+            var storageObj = {}
+            storageObj["customSongs"] = []
+            chrome.storage.sync.set(storageObj);
         }
+
+            // transparent full screen div that contains the list of song options,
+            // but will close on click
+            var gdpSelectSongMenu = $('<div class="gdp-menu"></div>')
+            .css('z-index', maxZIndex)
+            .click(function() {
+                if(!$("#gdp-add-song-url-input").is(":focus") && !$("#gdp-add-song-name-input").is(":focus")){
+                    //input and text area has focus
+                    $(this).remove();
+                }
+            });
+
+            // div containing the song options
+            var gdpSelectSongList = $('<div class="gdp-menu-list"></div>');
+            // loop through the song options list and append each song option
+            // to the menu list
+            for (var i = 0; i < songOptions.length; i++) {
+                gdpSelectSongList.append(songOptions[i]);
+            }
+
+            // append the song option list to the screen
+            gdpSelectSongMenu.append(gdpSelectSongList);
+
+            var addSong = ["<div id='gdp-add-song-wrapper' class='gdp-add-custom-wrapper'>",
+                               "<input type='text' align='left' ",
+                                   "placeholder='Add a custom song URL' id='gdp-add-song-url-input' ",
+                                   "class='gdp-add-custom-input' />" +
+                               "<input type='text' align='left' ",
+                                   "placeholder='Add a custom song name' id='gdp-add-song-name-input' ",
+                                   "class='gdp-add-custom-short-input' maxlength=20 />",
+                               "<div id='gdp-add-song-button' class='gdp-add-custom-button'>Submit</div>",
+                           "</div>"].join('');
+            gdpSelectSongMenu.append(addSong);
+            $('body').append(gdpSelectSongMenu);
+            $("#gdp-add-song-button").click(function(){
+                addCustomSong();
+            });
+
+            $('body').append(gdpSelectSongMenu);
     });
-
-    // div containing the song options
-    var gdpSelectSongList = $('<div class="gdp-menu-list"></div>');
-    // loop through the song options list and append each song option
-    // to the menu list
-    for (var i = 0; i < songOptions.length; i++) {
-        gdpSelectSongList.append(songOptions[i]);
-    }
-
-    // append the song option list to the screen
-    gdpSelectSongMenu.append(gdpSelectSongList);
-
-    var addSong = ["<div id='gdp-add-song-wrapper' class='gdp-add-custom-wrapper'>",
-                       "<input type='text' align='left' ",
-                           "placeholder='Add a custom song URL' id='gdp-add-song-input' ",
-                           "class='gdp-add-custom-input'></input>" +
-                       "<div id='gdp-add-song-button' class='gdp-add-custom-button'>Submit</div>",
-                   "</div>"].join('');
-    gdpSelectSongMenu.append(addSong);
-    $('body').append(gdpSelectSongMenu);
-    $("#gdp-add-song-button").click(function(){
-        addCustomSong();
-    });
-
-    $('body').append(gdpSelectSongMenu);
 }
 
 // ---------------------Take In Custom Songs---------------------- //
@@ -389,10 +431,26 @@ $(document).keypress(function(e) {
         $('#gdp-add-song-button').click();
     }
 });
+function saveCustomSong(songName, url) {
+    chrome.storage.sync.get("customSongs", function(storageItem) {
+        var customSongs = storageItem["customSongs"];
+        var storageObj = {};
+        if (customSongs) {
+            customSongs.push({name: songName, url: url});
+            storageObj["customSongs"] = customSongs;
+            chrome.storage.sync.set(storageObj)
+        } else {
+            storageObj["customSongs"] = [];
+            chrome.storage.sync.set(storageObj);
+        }
+    });
+}
 function addCustomSong(){
-   var link = $("#gdp-add-song-input").val(); //get the link from the input
-   $('.gdp-menu').remove();
-   gdpMedia.selectSong(link, true);
+    var name = $("#gdp-add-song-name-input").val(); // get the song name from the input
+    var url = $("#gdp-add-song-url-input").val(); //get the link from the input
+    saveCustomSong(name, url);
+    $('.gdp-menu').remove();
+    gdpMedia.selectSong(name, url, true);
 }
 
 /******************************************************************************
