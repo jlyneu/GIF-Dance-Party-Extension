@@ -1,6 +1,8 @@
 # GIF-Dance-Party-Extension
 A Chrome Extension inspired by http://gifdanceparty.giphy.com/
 
+Start the party at the Chrome Web Store: https://chrome.google.com/webstore/detail/gif-dance-party-extension/ihcnbadcckafkjidbccichfdjbahnfnn
+
 ## Turn even the most intolerable websites into an animated rave
 Fan of Fuzzy Wobble's [original dance party](http://gifdanceparty.giphy.com/)? Well, now
 is your chance to take the party to any website of your choice! Expanding your professional
