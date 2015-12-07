@@ -26,3 +26,5 @@ see it too!
 If you have ideas on how to make the party better, feel free to create a pull request or send your feedback to
 GDPExtension@gmail.com. We also might be updating the Chrome Extension with more GIF dancers and music.
 If you think that you've found the perfect media for this Chrome Extension, then we might push it out!
+
+![alt tag](https://imgur.com/WuQxRHV.png)
