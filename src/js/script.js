@@ -362,10 +362,13 @@ function createSelectSongMenu() {
 
     // loop through all of the GDP song names and add the song option
     // DOM element to the songOptions list
-    for (var i = 0; i < gdpMedia.gdpPlaylist.length; i++) {
-        songOptions.push(createSongOption(gdpMedia.gdpPlaylist[i]));
+    for (var songName in gdpMedia.gdpSongMap) {
+        if (gdpMedia.gdpSongMap.hasOwnProperty(songName)) {
+            songOptions.push(createSongOption(songName));
+        }
     }
 
+    // look in chrome storage for custom songs that users have added
     chrome.storage.sync.get("customSongs", function(storageItem) {
         var customSongs = storageItem.customSongs;
         if (customSongs && customSongs.length > 0) {

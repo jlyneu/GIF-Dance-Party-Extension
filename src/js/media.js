@@ -3,12 +3,7 @@
  * for the GIF Dance Party
  */
 gdpMedia =  {
-    /* List of GIF Dance Party song titles */
-    gdpPlaylist: [
-        'no music', 'bazz', 'bubblebutt', 'fatboy', 'grounded',
-        'halffull', 'hotline', 'nahnahnah', 'sandstorm', 'shake it off', 'singalong', 'trololo',
-        'twist', 'walkmen', 'wegotyou', 'whats going on'
-    ],
+    /* GIF Dance Party song titles and urls */
     gdpSongMap:{
         'no music': 'nomusic',
         'bazz': 'http://gifdanceparty.giphy.com/music/bazz.ogg',

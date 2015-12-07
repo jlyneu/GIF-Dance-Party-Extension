@@ -1,8 +1,8 @@
-// name of the gdp song to play by default
-var defaultSongName = 'singalong';
+// url of the gdp song to play by default
+var defaultSongUrl = 'http://gifdanceparty.giphy.com/music/singalong.ogg';
 // initialize the javascript Audio object
 var gdpAudio = new Audio();
-gdpAudio.src = 'http://gifdanceparty.giphy.com/music/singalong.ogg';
+gdpAudio.src = defaultSongUrl;
 
 // send a message to the currently opened tab
 function messageCurrentTab(message) {
