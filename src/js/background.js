@@ -24,6 +24,7 @@ chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         // incoming message about party status
         if (request.type === "partyStatus") {
+            // send message to current tab to start or stop the party
             if (request.isPartyOn) {
                 messageCurrentTab({type: "stopParty"});
             }

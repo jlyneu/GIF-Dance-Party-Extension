@@ -371,7 +371,6 @@ gdpMedia =  {
     /* When leaving the current page, send a message to the background script
        to stop playing audio */
     unloadAudio: function() {
-        // when leaving the page, be sure to stop the gdp audio
         $(window).unload(function() {
             gdpMedia.stopAudio();
         });

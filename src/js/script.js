@@ -33,20 +33,17 @@ function flipImage($image) {
 of the screen. On hover, the GIF will have an X button in the top left,
 a FLIP, FRONT, and BACK button in the top right, a CLONE button in
 the bottom left, and a RESIZE handle in the bottom right. GIFS should
-by default be in front of the other divs upon creation. */
+by default be in front of the other divs upon creation.
+If a url is provided, then this means that this GIF is not in gdpMedia but
+is instead custom and added by the user */
 function createGIFDancer(dancerName, url) {
-    if(!url){
-        //no url was defined
+    // No url was provided
+    if(!url) {
         // Giphy url for the GIF dancer
-        var gifUrl = gdpMedia.getGifUrl(dancerName);
-        // Img element of the GIF dancer
-        var gifImg = $('<img src="' + gifUrl + '" />');
+        url = gdpMedia.getGifUrl(dancerName);
     }
-    else{
-        var gifUrl = url;
-        var gifImg = $('<img src="' + url + '" />');
-    }
-
+    // Img element of the GIF dancer
+    var gifImg = $('<img src="' + url + '" />');
 
     // ----------------- create the various dancer options ----------------- //
 
@@ -77,12 +74,12 @@ function createGIFDancer(dancerName, url) {
         .css('z-index', maxZIndex)
         .click(function() {
             if(!url){
-                //one from a list
+                // one from a list
                 createGIFDancer(dancerName);
             }
             else{
-                //one from Custom
-                createGIFDancer("",gifUrl);
+                // one from Custom
+                createGIFDancer("", url);
             }
         });
 
@@ -98,9 +95,9 @@ function createGIFDancer(dancerName, url) {
 
     // create an div that resizes with the dancer GIF
     var resizableDiv = $('<div class="gdp-resizable"></div>')
+        .append(cloneDiv)
         // append the buttons for the dancer options
         .append(topOptDiv)
-        .append(cloneDiv)
         // append the actual GIF dancer
         .append(gifImg)
         // on hover, display the dancer options
@@ -150,8 +147,8 @@ function createMainMenu() {
 
     var menuHtml = [
         '<div class="gdp-main-menu">',
-        '<div class="gdp-add-dancer gdp-main-menu-btn">ADD DANCER</div>',
-        '<div class="gdp-select-song gdp-main-menu-btn">SELECT SONG</div>',
+            '<div class="gdp-add-dancer gdp-main-menu-btn">ADD DANCER</div>',
+            '<div class="gdp-select-song gdp-main-menu-btn">SELECT SONG</div>',
         '</div>'
     ].join('');
 
@@ -172,24 +169,37 @@ function createMainMenu() {
 // ---------------------- create the ADD DANCER menu ----------------------- //
 
 /* Return an element representing the 100px by 100px thumbnail of the GIF
-dancer framed by a white circle with a black border */
+dancer framed by a white circle with a black border. When creating a thumbnail
+for a custom GIF, provide null or "" for the dancerName */
 function createThumbnail(dancerName, imageUrl) {
 
     var dancerThumbnailWrapper = $('<div class="gdp-thumbnail-wrapper"></div>');
     var dancerThumbnailImg = $('<img class="gdp-thumbnail-img" src="' + imageUrl + '" />');
+    // if dancerName isn't provided, then this is a thumbnail for a custom GIF
     if (!dancerName) {
         dancerThumbnailWrapper.addClass('gdp-custom-thumbnail');
-        var dancerThumbnailDelete = $('<div class="gdp-thumbnail-delete">X</div>').css("z-index", maxZIndex).click(function() {
-            var customDancerIndex = $('.gdp-custom-thumbnail').index($(this).parent());
-            chrome.storage.sync.get("customDancers", function(storageItem){
-                storageItem.customDancers.splice(customDancerIndex, 1);
-                var storageObj = {};
-                storageObj["customDancers"] = storageItem.customDancers;
-                chrome.storage.sync.set(storageObj);
-                createAddDancerMenu();
+        // X button to delete the custom GIF
+        var dancerThumbnailDelete = $('<div class="gdp-thumbnail-delete">X</div>')
+            .css("z-index", maxZIndex)
+            .click(function() {
+                // use the position of the custom GIF in the menu to determine which
+                // url in the customDancers array corresponds with the clicked thumbnail
+                var customDancerIndex = $('.gdp-custom-thumbnail').index($(this).parent());
+                // retrieve the list of custom GIF urls from chrome storage
+                chrome.storage.sync.get("customDancers", function(storageItem){
+                    // remove the url for the clicked custom GIF from the array
+                    storageItem.customDancers.splice(customDancerIndex, 1);
+                    // set the new array as the customDancers list in storage
+                    var storageObj = {};
+                    storageObj["customDancers"] = storageItem.customDancers;
+                    chrome.storage.sync.set(storageObj);
+                    // after deleting the custom GIF, reopen the menu
+                    createAddDancerMenu();
+                });
+                // remove the thumbnail of the custom GIF from the menu
+                $(this).parent().remove();
             });
-            $(this).parent().remove();
-        });
+        // add the X button to the thumbnail
         dancerThumbnailWrapper.append(dancerThumbnailDelete);
     }
 
@@ -227,14 +237,17 @@ function createAddDancerMenu() {
         }
     }
 
+    // retrieve the custom GIF dancers from storage
     chrome.storage.sync.get("customDancers", function(storageItem) {
         var customDancers = storageItem.customDancers;
         if (customDancers && customDancers.length > 0) {
+            // loop through custom dancers and create thumbnails for each
             for (var i = 0; i < customDancers.length; i++) {
                 var currentDancer = customDancers[i];
                 thumbnailDivs.push(createThumbnail("", currentDancer));
             }
         } else {
+            // create the customDancers list if it hasn't already been created
             var storageObj = {}
             storageObj["customDancers"] = []
             chrome.storage.sync.set(storageObj);
@@ -245,8 +258,9 @@ function createAddDancerMenu() {
         var gdpAddDancerMenu = $('<div class="gdp-menu"></div>')
         .css('z-index', maxZIndex)
         .click(function() {
-            if(!$("#gdp-add-gif-input").is(":focus")){
-                //input and text area has focus
+            // close the menu if the user is not clicking the on the input
+            // for adding a custom GIF
+            if (!$("#gdp-add-gif-input").is(":focus")) {
                 $(this).remove();
             }
         });
@@ -261,14 +275,17 @@ function createAddDancerMenu() {
 
         // append the thumbnail list to the screen
         gdpAddDancerMenu.append(gdpAddDancerList);
-        var addGif = ["<div id='gdp-add-gif-wrapper' class='gdp-add-custom-wrapper'>",
-                           "<input type='text' align='left' ",
-                               "placeholder='Add a custom GIF URL' id='gdp-add-gif-input' ",
-                               "class='gdp-add-custom-short-input'></input>" +
-                           "<div id='gdp-add-gif-button' class='gdp-add-custom-button'>Submit</div>",
-                       "</div>"].join('');
-        gdpAddDancerMenu.append(addGif);
+
+        // create the input and submit button for adding custom GIFs
+        var addGifInterface = ["<div id='gdp-add-gif-wrapper' class='gdp-add-custom-wrapper'>",
+                                   "<input type='text' align='left' ",
+                                       "placeholder='Add a custom GIF URL' id='gdp-add-gif-input' ",
+                                       "class='gdp-add-custom-short-input'></input>" +
+                                   "<div id='gdp-add-gif-button' class='gdp-add-custom-button'>Submit</div>",
+                               "</div>"].join('');
+        gdpAddDancerMenu.append(addGifInterface);
         $('body').append(gdpAddDancerMenu);
+        // create a new custom GIF when clicking the submit button
         $("#gdp-add-gif-button").click(function(){
             addGiphy();
         });
@@ -277,39 +294,46 @@ function createAddDancerMenu() {
 
 // ---------------------Take In Custom Gifs from Giphy---------------------- //
 
-/*
-    Listen for an enter event or click Submit
-*/
+/* Listen for an enter event or click Submit to add a custom GIF */
 $(document).keypress(function(e) {
     if(e.which == 13 && $("#gdp-add-gif-input").is(":focus")) {
-        //pressed enter while focused
+        // pressed enter while focused
         $('#gdp-add-gif-button').click();
     }
 });
+/* Save the given url of a custom GIF to the Chrome storage */
 function saveGiphy(url) {
+    // retrieve custom GIF dancers from storage
     chrome.storage.sync.get("customDancers", function(storageItem) {
         var customDancers = storageItem["customDancers"];
         var storageObj = {};
+        // if customDancers is already present, then push the given url
+        // of the new custom GIf onto the end of the list and set in storage
         if (customDancers) {
             customDancers.push(url);
             storageObj["customDancers"] = customDancers;
             chrome.storage.sync.set(storageObj)
         } else {
-            storageObj["customDancers"] = [];
+            // otherwise create a new list with the given url
+            storageObj["customDancers"] = [url];
             chrome.storage.sync.set(storageObj);
         }
     });
 }
+/* Add a custom GIF based on the value in the ADD DANCER menu input field */
 function addGiphy(){
-   var link = $("#gdp-add-gif-input").val(); //get the link from the input
-   var ending = link.slice(-4);
-   if(ending == ".gif"){
-       $('.gdp-menu').remove();
-       saveGiphy(link);
-       createGIFDancer("",link);
-   }else{
-       alert("URL did not point to a .GIF");
-   }
+    //get the link from the input
+    var link = $("#gdp-add-gif-input").val();
+    var ending = link.slice(-4);
+    // make sure that the input ends in .gif
+    if(ending == ".gif"){
+        // close the menu, save the URL, and add the dancer to the screen
+        $('.gdp-menu').remove();
+        saveGiphy(link);
+        createGIFDancer("",link);
+    } else {
+        alert("URL did not point to a .GIF");
+    }
 }
 
 // ---------------------- create the SELECT SONG menu ---------------------- //
@@ -319,29 +343,41 @@ function createSongOption(songName) {
     songUrl = null;
 
     var songOption = $('<div class="gdp-song-option">' + songName.toUpperCase() + '</div>');
-    // add delete button for custom song options
+    // add delete button for custom song option
     if (!gdpMedia.gdpSongMap.hasOwnProperty(songName)) {
         songOption.addClass('gdp-custom-song-option').click(function() {
+            // use the position of the custom song in the menu to determine which
+            // entity in the customSongs array corresponds with the clicked song
             var customSongOptionIndex = $('.gdp-custom-song-option').index($(this));
+            // retrieve the list of custom songs from storage
             chrome.storage.sync.get("customSongs", function(storageItem){
+                // retrieve the song url from the list, play the song, and close the menu
                 songUrl = storageItem.customSongs[customSongOptionIndex].url;
                 gdpMedia.selectSong(songName, songUrl, true);
                 $('.gdp-select-song-menu').remove();
             });
         });
+        // X button to remove this custom song from the menu
         var songOptionDelete = $('<div class="gdp-song-option-delete">X</div>').css("z-index", maxZIndex).click(function() {
+            // use the position of the custom song in the menu to determine which
+            // entity in the customSongs array corresponds with the clicked song
             var customSongDeleteOptionIndex = $('.gdp-custom-song-option').index($(this).parent());
             chrome.storage.sync.get("customSongs", function(storageItem){
+                // remove the custom song from the list
                 storageItem.customSongs.splice(customSongDeleteOptionIndex, 1);
                 var storageObj = {};
+                // set the new array in storage
                 storageObj["customSongs"] = storageItem.customSongs;
                 chrome.storage.sync.set(storageObj);
+                // reopen the song menu
                 createSelectSongMenu();
             });
+            // remove this custom song from the menu
             $(this).parent().remove();
         });
         songOption.append(songOptionDelete);
     } else {
+        // otherwise, the song is not custom so play the song on click and close the menu
         songOption.click(function() {
             gdpMedia.selectSong(songName, songUrl || "");
             $('.gdp-select-song-menu').remove();
@@ -372,68 +408,72 @@ function createSelectSongMenu() {
     chrome.storage.sync.get("customSongs", function(storageItem) {
         var customSongs = storageItem.customSongs;
         if (customSongs && customSongs.length > 0) {
+            // loop through each custom song and add an option to the menu for each
             for (var i = 0; i < customSongs.length; i++) {
                 var currentSong = customSongs[i];
                 songOptions.push(createSongOption(currentSong.name));
             }
         } else {
+            // otherwise create a new list for custom songs
             var storageObj = {}
             storageObj["customSongs"] = []
             chrome.storage.sync.set(storageObj);
         }
 
-            // transparent full screen div that contains the list of song options,
-            // but will close on click
-            var gdpSelectSongMenu = $('<div class="gdp-menu"></div>')
+        // transparent full screen div that contains the list of song options,
+        // but will close on click
+        var gdpSelectSongMenu = $('<div class="gdp-menu"></div>')
             .css('z-index', maxZIndex)
             .click(function() {
+                // close the song menu if the user isn't clicking on the inputs
+                // for adding a custom song
                 if(!$("#gdp-add-song-url-input").is(":focus") && !$("#gdp-add-song-name-input").is(":focus")){
-                    //input and text area has focus
                     $(this).remove();
                 }
             });
 
-            // div containing the song options
-            var gdpSelectSongList = $('<div class="gdp-menu-list"></div>');
-            // loop through the song options list and append each song option
-            // to the menu list
-            for (var i = 0; i < songOptions.length; i++) {
-                gdpSelectSongList.append(songOptions[i]);
-            }
+        // div containing the song options
+        var gdpSelectSongList = $('<div class="gdp-menu-list"></div>');
+        // loop through the song options list and append each song option
+        // to the menu list
+        for (var i = 0; i < songOptions.length; i++) {
+            gdpSelectSongList.append(songOptions[i]);
+        }
 
-            // append the song option list to the screen
-            gdpSelectSongMenu.append(gdpSelectSongList);
+        // append the song option list to the screen
+        gdpSelectSongMenu.append(gdpSelectSongList);
 
-            var addSong = ["<div id='gdp-add-song-wrapper' class='gdp-add-custom-wrapper'>",
-                               "<input type='text' align='left' ",
-                                   "placeholder='Add a custom song URL' id='gdp-add-song-url-input' ",
-                                   "class='gdp-add-custom-input' />" +
-                               "<input type='text' align='left' ",
-                                   "placeholder='Add a custom song name' id='gdp-add-song-name-input' ",
-                                   "class='gdp-add-custom-short-input' maxlength=20 />",
-                               "<div id='gdp-add-song-button' class='gdp-add-custom-button'>Submit</div>",
-                           "</div>"].join('');
-            gdpSelectSongMenu.append(addSong);
-            $('body').append(gdpSelectSongMenu);
-            $("#gdp-add-song-button").click(function(){
-                addCustomSong();
-            });
+        var addSongInterface = ["<div id='gdp-add-song-wrapper' class='gdp-add-custom-wrapper'>",
+                                    "<input type='text' align='left' ",
+                                        "placeholder='Add a custom song URL' id='gdp-add-song-url-input' ",
+                                        "class='gdp-add-custom-input' />" +
+                                    "<input type='text' align='left' ",
+                                        "placeholder='Add a custom song name' id='gdp-add-song-name-input' ",
+                                        "class='gdp-add-custom-short-input' maxlength=20 />",
+                                    "<div id='gdp-add-song-button' class='gdp-add-custom-button'>Submit</div>",
+                                "</div>"].join('');
+        gdpSelectSongMenu.append(addSongInterface);
+        $('body').append(gdpSelectSongMenu);
+        // save and play the custom song specified by the input fields when
+        // the submit button is clicked
+        $("#gdp-add-song-button").click(function(){
+            addCustomSong();
+        });
 
-            $('body').append(gdpSelectSongMenu);
+        $('body').append(gdpSelectSongMenu);
     });
 }
 
 // ---------------------Take In Custom Songs---------------------- //
 
-/*
-    Listen for an enter event or click Submit
-*/
+/* Listen for an enter event or click Submit to add a custom song */
 $(document).keypress(function(e) {
     if(e.which == 13 && $("#gdp-add-song-input").is(":focus")) {
-        //pressed enter while focused
+        // pressed enter while focused
         $('#gdp-add-song-button').click();
     }
 });
+/* Add a custom song based on the value in the ADD SONG menu input fields */
 function saveCustomSong(songName, url) {
     chrome.storage.sync.get("customSongs", function(storageItem) {
         var customSongs = storageItem["customSongs"];
@@ -448,14 +488,19 @@ function saveCustomSong(songName, url) {
         }
     });
 }
+/* Save the name and url of a custom song to the Chrome storage */
 function addCustomSong(){
-    var name = $("#gdp-add-song-name-input").val(); // get the song name from the input
-    var url = $("#gdp-add-song-url-input").val(); //get the link from the input
-    if(url.indexOf('.mp3') > -1 || url.indexOf('.wav') > -1 || url.indexOf('.ogg') > -1){
+    // get the song name from the input
+    var name = $("#gdp-add-song-name-input").val();
+    // get the link from the input
+    var url = $("#gdp-add-song-url-input").val();
+    // make sure url has .mp3, .wav, or .ogg in input value
+    if(url.indexOf('.mp3') > -1 || url.indexOf('.wav') > -1 || url.indexOf('.ogg') > -1) {
+        // save the song name and url, close the menu, and play the song
         saveCustomSong(name, url);
         $('.gdp-menu').remove();
         gdpMedia.selectSong(name, url, true);
-    }else{
+    } else {
         alert("URL did not point to a .mp3, .wav, or .ogg");
     }
 }

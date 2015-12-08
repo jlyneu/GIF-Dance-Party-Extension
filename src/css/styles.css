@@ -1,22 +1,22 @@
 .gdp-add-custom-button {
     background-color: rgb(35, 126, 248);
+    border-radius: 2px;
     box-shadow: 2px 1px 1px #666666;
     color: white;
-    font-family: 'Hammersmith One';
-    padding: 11px;
     display: inline-block;
-    border-radius: 2px;
+    font-family: 'Hammersmith One' !important;
     margin-left: 5px;
+    padding: 11px;
 }
 .gdp-add-custom-button:hover {
     cursor: pointer;
 }
 .gdp-add-custom-input {
-    width: 435px !important;
+    display: inline-block !important;
     font-family: 'Hammersmith One' !important;
     height:30px !important;
-    display: inline-block !important;
     padding-left:10px !important;
+    width: 435px !important;
 }
 .gdp-add-custom-short-input {
     display: inline-block !important;
@@ -27,13 +27,13 @@
     width: 365px !important;
 }
 .gdp-add-custom-wrapper {
-    position: fixed;
     left: 50%;
     margin-left: -225px;
-    top: 80%;
-    width: 450px;
     margin-left: -225px;
     margin-top: 10px;
+    position: fixed;
+    top: 80%;
+    width: 450px;
 }
 .gdp-bottom-left {
     bottom: 10px;
@@ -55,11 +55,11 @@
     display: inline-block;
     display: -moz-inline-stack;
     left: 0;
+    min-height: 100px;
     position: fixed !important;
     top: 0;
     vertical-align: top;
     zoom: 1;
-    min-height: 100px;
 }
 .gdp-flipped {
     transform: scaleX(-1);
@@ -69,8 +69,8 @@
     color: white;
     font-family: "Hammersmith One";
     font-size: 16px;
-    right: 0;
     position: fixed;
+    right: 0;
 }
 .gdp-main-menu-btn {
     background-color: rgba(35, 126, 248, .3);
@@ -111,7 +111,7 @@
     border-radius: 5px;
     box-shadow: 2px 1px 1px #666666;
     color: white;
-    font-family: 'Hammersmith One';
+    font-family: 'Hammersmith One' !important;
     font-size: 30px;
     font-weight: bold;
     margin: 1px;
@@ -124,21 +124,13 @@
     box-sizing: content-box;
     float: right;
     font-size: 13px;
+    height: 15px;
     padding: 10px;
     position: relative;
     right: -30px;
     text-align: center;
     top: -35px;
     width: 15px;
-    height: 15px;
-}
-.gdp-thumbnail-img {
-    background-color: white;
-    border: 2px solid black;
-    border-radius: 50%;
-    display: inline-block;
-    height: 100px;
-    width: 100px;
 }
 .gdp-thumbnail-delete {
     background-color: rgb(244, 37, 112);
@@ -160,6 +152,14 @@
     text-align: center;
     top: 25px;
     width: 15px;
+}
+.gdp-thumbnail-img {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 50%;
+    display: inline-block;
+    height: 100px;
+    width: 100px;
 }
 .gdp-thumbnail-wrapper {
     display: inline-block;
