@@ -16,9 +16,6 @@ var frontZIndex = maxZIndex - 500;
 /** z-index of back-most GIF */
 var backZIndex = frontZIndex - 1;
 
-/** are we currently Harlem Shaking? */
-var isShaking = false;
-
 /******************************************************************************
 * DANCER CREATION
 *****************************************************************************/
@@ -161,14 +158,9 @@ function createMainMenu() {
     $('.gdp-main-menu').css('z-index', maxZIndex);
 
     $('.gdp-harlem-shake').click(function() {
-        if (!isShaking) {
-            isShaking = true;
+        if (!gdpHarlemShake.isShaking) {
             // DO THE HARLEM SHAKE [harlemshake.js]
             gdpHarlemShake.startTheShake();
-            // allow more shaking after 30 seconds
-            setTimeout(function() {
-                isShaking = false;
-            }, 30 * 1000);
         }
     });
 
@@ -543,6 +535,9 @@ function startTheParty() {
 /* Remove the main menu, stop the music, and remove the GIF dancers, ADD
 DANCER menu, and SELECT SONG menu */
 function stopTheParty() {
+    // clean up Harlem Shake if it's happening
+    gdpHarlemShake.isShaking = false;
+    $('.gdpAnimated').removeClass("gdpAnimated animated infinite " + animations.join(' '));
     $('.gdp-main-menu').remove();
     gdpMedia.stopAudio();
     $('.gdp-dancer').remove();

@@ -46,7 +46,9 @@ chrome.runtime.onMessage.addListener(
             gdpAudio.loop = true;
             gdpAudio.play();
             // incoming message to play the previously played song
-        } else if (request.type === "playPreviousSong") {
+            // NOTE: this will only have an effect if the harlem shake song
+            // is currently playing
+        } else if (request.type === "playPreviousSong" && currentSongUrl.indexOf("harlemshake") > 0) {
             var tmpUrl = previousSongUrl;
             gdpAudio.src = previousSongUrl;
             gdpAudio.loop = true;

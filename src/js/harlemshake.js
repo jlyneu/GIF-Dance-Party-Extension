@@ -38,7 +38,12 @@ animateElement = function(element, specifiedClass) {
  * page shake, bounce, etc. during the rest of the song.
  */
 gdpHarlemShake = {
+    /* is Harlem Shake on for the current browser page? */
+    isShaking: false,
+    /* DO THE HARLEM SHAKE */
     startTheShake: function() {
+        gdpHarlemShake.isShaking = true;
+
         /* Start playing the Harlem Shake music */
         gdpMedia.selectSong("", "http://jlyneu.github.io/GIF-Dance-Party-Extension/harlemshake.mp3", true);
 
@@ -50,7 +55,7 @@ gdpHarlemShake = {
             var firstDancer = currentDancers[0];
             animateElement($(firstDancer), 'shake');
             // wait 15 seconds to animate the rest of the GIF dancers
-            if (currentDancers.length > 1) {
+            if (currentDancers.length > 1 && gdpHarlemShake.isShaking) {
                 setTimeout(function() {
                     // find any new dancers that were recently added
                     currentDancers = $(".gdp-dancer img");
@@ -68,17 +73,22 @@ gdpHarlemShake = {
         }
         // wait 15 seconds to animate the rest of the shakeable elements on the page
         setTimeout(function() {
-            for (var j = 0; j < shakeableElements.length; j++) {
-                animateElement(shakeableElements[j]);
+            if (gdpHarlemShake.isShaking) {
+                for (var j = 0; j < shakeableElements.length; j++) {
+                    animateElement(shakeableElements[j]);
+                }
             }
         }, 15 * 1000);
 
         /* Reset the party as it was */
         setTimeout(function() {
-            // play the song that was playing before the Harlem Shake
-            gdpMedia.playPreviousSong();
-            // stop all of the animations
-            $('.gdpAnimated').removeClass("gdpAnimated animated infinite " + animations.join(' '));
+            if (gdpHarlemShake.isShaking) {
+                // play the song that was playing before the Harlem Shake
+                gdpMedia.playPreviousSong();
+                gdpHarlemShake.isShaking = false;
+                // stop all of the animations
+                $('.gdpAnimated').removeClass("gdpAnimated animated infinite " + animations.join(' '));
+            }
         }, 30 * 1000);
     }
 };
