@@ -1,5 +1,11 @@
 // url of the gdp song to play by default
 var defaultSongUrl = 'http://gifdanceparty.giphy.com/music/singalong.ogg';
+
+// url of the song that was last played before the current
+var previousSongUrl = "";
+// url of the song that is currently playing
+var currentSongUrl = defaultSongUrl;
+
 // initialize the javascript Audio object
 var gdpAudio = new Audio();
 gdpAudio.src = defaultSongUrl;
@@ -34,9 +40,19 @@ chrome.runtime.onMessage.addListener(
         }
         // incoming message to play a particular song
         else if (request.type === "songUrl") {
+            previousSongUrl = currentSongUrl;
+            currentSongUrl = request.songUrl;
             gdpAudio.src = request.songUrl;
             gdpAudio.loop = true;
             gdpAudio.play();
+            // incoming message to play the previously played song
+        } else if (request.type === "playPreviousSong") {
+            var tmpUrl = previousSongUrl;
+            gdpAudio.src = previousSongUrl;
+            gdpAudio.loop = true;
+            gdpAudio.play();
+            previousSongUrl = currentSongUrl;
+            currentSongUrl = tmpUrl;
             // incoming message to stop audio, aka STOP THE PARTY
         } else if (request.type === "stopAudio") {
             gdpAudio.pause();
@@ -44,4 +60,4 @@ chrome.runtime.onMessage.addListener(
             gdpAudio.src = request.songUrl;
         }
     }
-)
+);

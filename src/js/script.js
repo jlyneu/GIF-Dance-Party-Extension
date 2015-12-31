@@ -16,6 +16,9 @@ var frontZIndex = maxZIndex - 500;
 /** z-index of back-most GIF */
 var backZIndex = frontZIndex - 1;
 
+/** are we currently Harlem Shaking? */
+var isShaking = false;
+
 /******************************************************************************
 * DANCER CREATION
 *****************************************************************************/
@@ -147,6 +150,7 @@ function createMainMenu() {
 
     var menuHtml = [
         '<div class="gdp-main-menu">',
+            '<div class="gdp-harlem-shake gdp-main-menu-btn">SHAKE</div>',
             '<div class="gdp-add-dancer gdp-main-menu-btn">ADD DANCER</div>',
             '<div class="gdp-select-song gdp-main-menu-btn">SELECT SONG</div>',
         '</div>'
@@ -155,6 +159,18 @@ function createMainMenu() {
     // append the menu to the screen
     $('body').append(menuHtml);
     $('.gdp-main-menu').css('z-index', maxZIndex);
+
+    $('.gdp-harlem-shake').click(function() {
+        if (!isShaking) {
+            isShaking = true;
+            // DO THE HARLEM SHAKE [harlemshake.js]
+            gdpHarlemShake.startTheShake();
+            // allow more shaking after 30 seconds
+            setTimeout(function() {
+                isShaking = false;
+            }, 30 * 1000);
+        }
+    });
 
     // set a click listener for the "ADD DANCER" menu option
     $('.gdp-add-dancer').click(function() {

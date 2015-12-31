@@ -11,16 +11,16 @@ gdpMedia =  {
         'fatboy': 'http://gifdanceparty.giphy.com/music/fatboy.ogg',
         'grounded': 'http://gifdanceparty.giphy.com/music/grounded.ogg',
         'halffull': 'http://gifdanceparty.giphy.com/music/halffull.ogg',
+        'hotline': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/hotlineloop.wav',
         'nahnahnah': 'http://gifdanceparty.giphy.com/music/nahnahnah.ogg',
+        'sandstorm': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/sandstorm.wav',
+        'shake it off': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/Taylor_shake_it_off.wav',
         'singalong': 'http://gifdanceparty.giphy.com/music/singalong.ogg',
         'trololo': 'http://gifdanceparty.giphy.com/music/trololo.ogg',
         'twist': 'http://gifdanceparty.giphy.com/music/twist.ogg',
         'walkmen': 'http://gifdanceparty.giphy.com/music/walkmen.ogg',
         'wegotyou': 'http://gifdanceparty.giphy.com/music/wegotyou.ogg',
-        'hotline': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/hotlineloop.wav',
-        'sandstorm': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/sandstorm.wav',
-        'whats going on': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/heman.wav',
-        'shake it off': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/Taylor_shake_it_off.wav',
+        'whats going on': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/heman.wav'
     },
     /* Mapping from dancer names to Imgur thumbnail and Giphy dancer ids */
     mediaIds: {
@@ -356,10 +356,16 @@ gdpMedia =  {
     /* Send a message to the background script to play the song with the
        given name */
     selectSong: function(name, url, isCustom) {
-        console.log([name, url, isCustom]);
         chrome.runtime.sendMessage({
             type: "songUrl",
             songUrl: (!isCustom ? gdpMedia.gdpSongMap[name] : url)
+        });
+    },
+    /* Send a message to the background script to play the previously played
+       song */
+    playPreviousSong: function() {
+        chrome.runtime.sendMessage({
+            type: "playPreviousSong"
         });
     },
     /* Send a message to the background script to stop playing audio */
