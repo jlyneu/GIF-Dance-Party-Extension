@@ -1,4 +1,5 @@
 var minDimension = 20, maxDimension = 450;
+var animations = ['shake', 'wobble', 'tada']
 
 /**
  * Given a collection of jQuery objects, return an array of elements whose
@@ -19,6 +20,18 @@ findShakeableElements = function(elements) {
 }
 
 /**
+ * Apply a random animate.css class to the given jQuery object element.
+ * If a value is passed in for specifiedClass, then use that instead of the
+ * random class from the animations array. This parameter is mainly used
+ * to always have the first animated element have the same animation each time
+ */
+animateElement = function(element, specifiedClass) {
+    var randomIndex = Math.floor(Math.random() * animations.length);
+    element.addClass("gdpAnimated animated infinite " +
+        (specifiedClass ? specifiedClass : animations[randomIndex]));
+}
+
+/**
  * When gdpHarlemShake.startTheShake is called, start playing the Harlem Shake
  * song. Find an element (ideally one of the dancers) to start shaking during
  * the build up, then have many elements (including the GIF dancers) on the
@@ -35,14 +48,14 @@ gdpHarlemShake = {
         // if there are any dancers, animate one of them for the build up
         if (currentDancers.length > 0) {
             var firstDancer = currentDancers[0];
-            $(firstDancer).addClass('gdpAnimated animated infinite shake');
+            animateElement($(firstDancer), 'shake');
             // wait 15 seconds to animate the rest of the GIF dancers
             if (currentDancers.length > 1) {
                 setTimeout(function() {
                     // find any new dancers that were recently added
                     currentDancers = $(".gdp-dancer img");
                     for (var i = 0; i < currentDancers.length; i++) {
-                        $(currentDancers[i]).addClass('gdpAnimated animated infinite shake');
+                        animateElement($(currentDancers[i]));
                     }
                 }, 15 * 1000);
             }
@@ -50,13 +63,13 @@ gdpHarlemShake = {
         // otherwise, grab an element on the page and animate it for the build up
         else {
             if (shakeableElements.length > 0) {
-                shakeableElements[0].addClass('gdpAnimated animated infinite shake');
+                animateElement(shakeableElements[0], 'shake');
             }
         }
         // wait 15 seconds to animate the rest of the shakeable elements on the page
         setTimeout(function() {
             for (var j = 0; j < shakeableElements.length; j++) {
-                shakeableElements[j].addClass('gdpAnimated animated infinite shake');
+                animateElement(shakeableElements[j]);
             }
         }, 15 * 1000);
 
@@ -65,7 +78,7 @@ gdpHarlemShake = {
             // play the song that was playing before the Harlem Shake
             gdpMedia.playPreviousSong();
             // stop all of the animations
-            $('.gdpAnimated').removeClass("gdpAnimated animated infinite shake");
+            $('.gdpAnimated').removeClass("gdpAnimated animated infinite " + animations.join(' '));
         }, 30 * 1000);
     }
 };
