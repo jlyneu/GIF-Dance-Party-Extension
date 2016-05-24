@@ -182,4 +182,6 @@
 
 .gdp-ytplayer {
     display: inline-block;
+    margin: 0 10px 5px;
+    vertical-align: bottom;
 }
