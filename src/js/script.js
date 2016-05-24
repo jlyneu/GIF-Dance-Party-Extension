@@ -147,6 +147,7 @@ function createMainMenu() {
 
     var menuHtml = [
         '<div class="gdp-main-menu">',
+            '<div class="gdp-ytplayer"></div>',
             '<div class="gdp-harlem-shake gdp-main-menu-btn">SHAKE</div>',
             '<div class="gdp-add-dancer gdp-main-menu-btn">ADD DANCER</div>',
             '<div class="gdp-select-song gdp-main-menu-btn">SELECT SONG</div>',
@@ -361,7 +362,13 @@ function createSongOption(songName) {
             chrome.storage.sync.get("customSongs", function(storageItem){
                 // retrieve the song url from the list, play the song, and close the menu
                 songUrl = storageItem.customSongs[customSongOptionIndex].url;
-                gdpMedia.selectSong(songName, songUrl, true);
+                stopYoutube(); //stop any existing playing videos
+                if(songUrl.indexOf('youtube') > -1){
+                    //play as youtube song
+                    playYoutube(songUrl);
+                } else{
+                    gdpMedia.selectSong(songName, songUrl, true);
+                }
                 $('.gdp-select-song-menu').remove();
             });
         });
@@ -387,6 +394,7 @@ function createSongOption(songName) {
     } else {
         // otherwise, the song is not custom so play the song on click and close the menu
         songOption.click(function() {
+            stopYoutube(); //kill youtube videos if running
             gdpMedia.selectSong(songName, songUrl || "");
             $('.gdp-select-song-menu').remove();
         });
@@ -400,7 +408,6 @@ play in the background. On click of a song option, the menu will be removed
 and the new song will be played. Clicking on anything besides the song
 options will close the SELECT SONG menu without playing a new song */
 function createSelectSongMenu() {
-
     // a list to hold the DOM elements of the song options
     var songOptions = [];
 
@@ -453,7 +460,7 @@ function createSelectSongMenu() {
 
         var addSongInterface = ["<div id='gdp-add-song-wrapper' class='gdp-add-custom-wrapper'>",
                                     "<input type='text' align='left' ",
-                                        "placeholder='Add a custom song URL' id='gdp-add-song-url-input' ",
+                                        "placeholder='Add a custom song URL or Youtube link.' id='gdp-add-song-url-input' ",
                                         "class='gdp-add-custom-input' />" +
                                     "<input type='text' align='left' ",
                                         "placeholder='Add a custom song name' id='gdp-add-song-name-input' ",
@@ -503,7 +510,11 @@ function addCustomSong(){
     // get the link from the input
     var url = $("#gdp-add-song-url-input").val();
     // make sure url has .mp3, .wav, or .ogg in input value
-    if(url.indexOf('.mp3') > -1 || url.indexOf('.wav') > -1 || url.indexOf('.ogg') > -1) {
+    if(url.indexOf('youtube') > -1){
+        //this is a youtube video
+        saveCustomSong(name, url);
+        playYoutube(url);
+    } else if(url.indexOf('.mp3') > -1 || url.indexOf('.wav') > -1 || url.indexOf('.ogg') > -1) {
         // save the song name and url, close the menu, and play the song
         saveCustomSong(name, url);
         $('.gdp-menu').remove();
@@ -511,6 +522,33 @@ function addCustomSong(){
     } else {
         alert("URL did not point to a .mp3, .wav, or .ogg");
     }
+}
+
+function playYoutube(url) {
+    //play song from youtube
+    stopYoutube(); //stop any existing player
+    gdpMedia.stopAudio(); //stop any existing audio
+    id = getParameterByName("v", url); //get video id from url
+    player = ['<iframe id="ytplayer" type="text/html" width="160" height="97"',
+                'src="https://www.youtube.com/embed/'+id+'?autoplay=1&loop=1&playlist='+id+'&origin=http://example.com"',
+                'frameborder="0"/>'].join('');
+    $('.gdp-ytplayer').append(player);
+}
+
+function stopYoutube() {
+    $('.gdp-ytplayer').children("iframe").remove();
+}
+
+//this function parses urls for url parameters
+//this is used by the youtube player which needs the v parameter
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
 /******************************************************************************

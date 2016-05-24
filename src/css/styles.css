@@ -73,7 +73,7 @@
     right: 0;
 }
 .gdp-main-menu-btn {
-    background-color: rgba(35, 126, 248, .3);
+    background-color: rgba(35, 126, 248, .9);
     border-radius: 4px;
     display: inline-block;
     margin: 10px;
@@ -178,4 +178,8 @@
 .gdp-top-right {
     float: right;
     margin: 10px 10px 0 0;
+}
+
+.gdp-ytplayer {
+    display: inline-block;
 }
