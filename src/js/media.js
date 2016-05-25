@@ -7,6 +7,7 @@ gdpMedia =  {
     gdpSongMap:{
         'no music': 'nomusic',
         'bazz': 'http://gifdanceparty.giphy.com/music/bazz.ogg',
+        'breadfish': 'http://jlyneu.github.io/GIF-Dance-Party-Extension/breadfish.mp3',
         'bubblebutt': 'http://gifdanceparty.giphy.com/music/bubblebutt.ogg',
         'fatboy': 'http://gifdanceparty.giphy.com/music/fatboy.ogg',
         'grounded': 'http://gifdanceparty.giphy.com/music/grounded.ogg',
