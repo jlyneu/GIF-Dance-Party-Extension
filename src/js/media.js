@@ -353,6 +353,15 @@ gdpMedia =  {
     getGifUrl: function(dancerName) {
         return "https://media.giphy.com/media/" + gdpMedia.mediaIds[dancerName]["giphy"] + "/giphy.gif";
     },
+    /* Create proper giphy url */
+    getGiphyUrl: function(id) {
+        return "https://media.giphy.com/media/" + id + "/giphy.gif";
+    },
+    /* Retrieve the Giphy id from a url*/
+    getGiphyId: function(url) {
+        a = url.split("-");
+        return a[a.length-1];
+    },
     /* Send a message to the background script to play the song with the
        given name */
     selectSong: function(name, url, isCustom) {

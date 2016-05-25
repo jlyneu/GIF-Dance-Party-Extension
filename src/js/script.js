@@ -161,6 +161,7 @@ function createMainMenu() {
     $('.gdp-harlem-shake').click(function() {
         if (!gdpHarlemShake.isShaking) {
             // DO THE HARLEM SHAKE [harlemshake.js]
+            stopYoutube(); //stop any playing youtube video
             gdpHarlemShake.startTheShake();
         }
     });
@@ -337,6 +338,13 @@ function addGiphy(){
     // make sure that the input ends in .gif
     if(ending == ".gif"){
         // close the menu, save the URL, and add the dancer to the screen
+        $('.gdp-menu').remove();
+        saveGiphy(link);
+        createGIFDancer("",link);
+    } else if(ending != ".gif" && link.indexOf('giphy.com') > -1){
+        //this is an improper giphy link
+        id = gdpMedia.getGiphyId(link);
+        link = gdpMedia.getGiphyUrl(id);
         $('.gdp-menu').remove();
         saveGiphy(link);
         createGIFDancer("",link);
