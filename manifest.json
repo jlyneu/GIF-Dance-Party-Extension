@@ -31,6 +31,7 @@
         "src/lib/jquery-migrate-1.2.1.js",
         "src/js/harlemshake.js",
         "src/js/media.js",
+        "src/js/changelog.js",
         "src/js/script.js"
       ]
     }

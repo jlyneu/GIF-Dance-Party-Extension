@@ -4,7 +4,7 @@
     box-shadow: 2px 1px 1px #666666;
     color: white;
     display: inline-block;
-    font-family: 'Hammersmith One' !important;
+    font-family: 'Hammersmith One', 'Trebuchet MS' !important;
     margin-left: 5px;
     padding: 11px;
 }
@@ -13,14 +13,14 @@
 }
 .gdp-add-custom-input {
     display: inline-block !important;
-    font-family: 'Hammersmith One' !important;
+    font-family: 'Hammersmith One', 'Trebuchet MS' !important;
     height:30px !important;
     padding-left:10px !important;
     width: 435px !important;
 }
 .gdp-add-custom-short-input {
     display: inline-block !important;
-    font-family: 'Hammersmith One' !important;
+    font-family: 'Hammersmith One', 'Trebuchet MS' !important;
     height: 30px !important;
     margin-top: 10px !important;
     padding-left: 10px !important;
@@ -45,6 +45,65 @@
     position: absolute;
     right: 10px;
 }
+.gdp-change-log-background {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.gdp-change-log-continue {
+    color: white;
+    cursor: pointer;
+    font-family: "Hammersmith One", "Trebuchet MS";
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
+}
+.gdp-change-log-continue:hover {
+    color: #666666;
+}
+.gdp-change-log-dancer {
+    height: 30px;
+    margin: 0 8px;
+    width: 30px;
+    vertical-align: middle;
+}
+.gdp-change-log-dialog {
+    background-color: #CDDC39;
+    border-radius: 4px;
+    box-shadow: 10px 5px 5px #666666;
+    cursor: default;
+    height: 70%;
+    left: 50%;
+    margin-left: -225px;
+    position: fixed;
+    top: 10%;
+    width: 450px;
+}
+.gdp-change-log-dialog-body {
+    background-color: #EEEEEE;
+    color: #666666;
+    font-family: "Hammersmith One", "Trebuchet MS";
+    height: 250px;
+    overflow-x: scroll;
+    padding: 30px;
+}
+.gdp-change-log-dialog-date {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.gdp-change-log-dialog-description {
+    padding-left: 14px;
+    margin-bottom: 10px;
+}
+.gdp-change-log-dialog-header {
+    background-color: #CDDC39;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    color: white;
+    font-family: "Hammersmith One", "Trebuchet MS";
+    font-size: 30px;
+    padding: 30px 0;
+    text-align: center;
+    vertical-align: middle;
+}
 .gdp-custom-thumbnail {
     margin-top: -35px !important;
 }
@@ -67,7 +126,7 @@
 .gdp-main-menu {
     bottom: 0;
     color: white;
-    font-family: "Hammersmith One";
+    font-family: "Hammersmith One", 'Trebuchet MS';
     font-size: 16px;
     position: fixed;
     right: 0;
@@ -75,6 +134,7 @@
 .gdp-main-menu-btn {
     background-color: rgba(35, 126, 248, .9);
     border-radius: 4px;
+    box-shadow: 2px 1px 1px #666666;
     display: inline-block;
     margin: 10px;
     padding: 15px;

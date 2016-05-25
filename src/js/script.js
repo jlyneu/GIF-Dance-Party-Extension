@@ -159,6 +159,8 @@ function createMainMenu() {
     $('.gdp-main-menu').css('z-index', maxZIndex);
 
     $('.gdp-harlem-shake').click(function() {
+        // clear change log dialog if it is still open
+        gdpChangeLog.closeChangeLog();
         if (!gdpHarlemShake.isShaking) {
             // DO THE HARLEM SHAKE [harlemshake.js]
             stopYoutube(); //stop any playing youtube video
@@ -168,10 +170,14 @@ function createMainMenu() {
 
     // set a click listener for the "ADD DANCER" menu option
     $('.gdp-add-dancer').click(function() {
+        // clear change log dialog if it is still open
+        gdpChangeLog.closeChangeLog();
         createAddDancerMenu();
     });
     // set a click listener for the "SELECT SONG" menu option
     $('.gdp-select-song').click(function() {
+        // clear change log dialog if it is still open
+        gdpChangeLog.closeChangeLog();
         createSelectSongMenu();
     });
 }
@@ -468,7 +474,7 @@ function createSelectSongMenu() {
 
         var addSongInterface = ["<div id='gdp-add-song-wrapper' class='gdp-add-custom-wrapper'>",
                                     "<input type='text' align='left' ",
-                                        "placeholder='Add a custom song URL or Youtube link.' id='gdp-add-song-url-input' ",
+                                        "placeholder='Add a custom song URL or YouTube link.' id='gdp-add-song-url-input' ",
                                         "class='gdp-add-custom-input' />" +
                                     "<input type='text' align='left' ",
                                         "placeholder='Add a custom song name' id='gdp-add-song-name-input' ",
@@ -572,6 +578,7 @@ function isPartyOn() {
 /* Append the main menu to the screen, start the music, and append the default
 GIF dancers to the screen */
 function startTheParty() {
+    gdpChangeLog.checkForUpdates();
     createMainMenu();
     gdpMedia.selectSong('singalong');
     createGIFDancer('pumpgirl');
@@ -581,6 +588,8 @@ function startTheParty() {
 /* Remove the main menu, stop the music, and remove the GIF dancers, ADD
 DANCER menu, and SELECT SONG menu */
 function stopTheParty() {
+    // clear change log dialog if it is still open
+    gdpChangeLog.closeChangeLog();
     // clean up Harlem Shake if it's happening
     gdpHarlemShake.isShaking = false;
     $('.gdpAnimated').removeClass("gdpAnimated animated infinite " + animations.join(' '));
