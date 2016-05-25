@@ -70,7 +70,7 @@
     border-radius: 4px;
     box-shadow: 10px 5px 5px #666666;
     cursor: default;
-    height: 70%;
+    height: 450px;
     left: 50%;
     margin-left: -225px;
     position: fixed;
@@ -84,6 +84,7 @@
     height: 250px;
     overflow-x: scroll;
     padding: 30px;
+    text-align: left;
 }
 .gdp-change-log-dialog-date {
     font-size: 16px;
@@ -91,7 +92,7 @@
 }
 .gdp-change-log-dialog-description {
     padding-left: 14px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 .gdp-change-log-dialog-header {
     background-color: #CDDC39;
