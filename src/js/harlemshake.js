@@ -7,15 +7,14 @@ var animations = ['shake', 'wobble', 'tada']
  */
 findShakeableElements = function(elements) {
     var shakeableElements = [];
-    for (var i = 0; i < elements.length; i++) {
-        var currentElement = $(elements[i]);
-        if (currentElement.height() > minDimension &&
-                currentElement.height() < maxDimension &&
-                currentElement.width() > minDimension &&
-                currentElement.width() < maxDimension) {
-            shakeableElements.push(currentElement);
+    elements.each(function(index, element) {
+        if (element.clientHeight > minDimension &&
+                element.clientHeight < maxDimension &&
+                element.clientWidth > minDimension &&
+                element.clientWidth < maxDimension) {
+            shakeableElements.push($(element));
         }
-    }
+    });
     return shakeableElements;
 }
 
@@ -44,11 +43,11 @@ gdpHarlemShake = {
     startTheShake: function() {
         gdpHarlemShake.isShaking = true;
 
-        /* Start playing the Harlem Shake music */
-        gdpMedia.selectSong("", "http://jlyneu.github.io/GIF-Dance-Party-Extension/harlemshake.mp3", true);
-
         var currentDancers = $(".gdp-dancer img");
         var shakeableElements = findShakeableElements($('*'));
+
+        /* Start playing the Harlem Shake music */
+        gdpMedia.selectSong("", "http://jlyneu.github.io/GIF-Dance-Party-Extension/harlemshake.mp3", true);
 
         // if there are any dancers, animate one of them for the build up
         if (currentDancers.length > 0) {
