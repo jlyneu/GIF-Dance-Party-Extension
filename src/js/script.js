@@ -355,7 +355,7 @@ function addGiphy(){
         saveGiphy(link);
         createGIFDancer("",link);
     } else {
-        alert("URL did not point to a .GIF");
+        alert("Please provide a Giphy URL or a .gif URL.");
     }
 }
 
@@ -534,7 +534,7 @@ function addCustomSong(){
         $('.gdp-menu').remove();
         gdpMedia.selectSong(name, url, true);
     } else {
-        alert("URL did not point to a .mp3, .wav, or .ogg");
+        alert("Please provide a YouTube URL or a .mp3, .wav, or .ogg URL.");
     }
 }
 
