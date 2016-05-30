@@ -181,7 +181,7 @@
 .gdp-opt {
     color: white;
     display: none;
-    font-family: 'Hammersmith One';
+    font-family: 'Hammersmith One', 'Trebuchet MS' !important;
     font-weight: bold;
 }
 .gdp-song-option {
@@ -189,7 +189,7 @@
     border-radius: 5px;
     box-shadow: 2px 1px 1px #666666;
     color: white;
-    font-family: 'Hammersmith One' !important;
+    font-family: 'Hammersmith One', 'Trebuchet MS' !important;
     font-size: 30px;
     font-weight: bold;
     margin: 1px;
@@ -217,7 +217,7 @@
     box-sizing: content-box;
     color: white;
     float: right;
-    font-family: 'Hammersmith One';
+    font-family: 'Hammersmith One', 'Trebuchet MS' !important;
     font-size: 13px;
     font-style: normal;
     font-variant: normal;
