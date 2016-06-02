@@ -344,6 +344,46 @@ gdpMedia =  {
         yeti: {
             imgur: '4LDzQq6',
             giphy: '3oEduYLrzljc1cGY5a'
+        },
+        bernie: {
+            imgur: 'ByPp5KA',
+            giphy: '3o7qE4Jq3b72Y9j3uU',
+        },
+        trump: {
+            imgur: 'Oi2bfAI',
+            giphy: '3oEjI5HGIL0YdSlhrq',
+        },
+        putin: {
+            imgur: 'Nnfp7C3',
+            giphy: '3oEjI7U6nzMnuzCs6s',
+        },
+        peter: {
+            imgur: 'SOYiQcm',
+            giphy: 'wyct0orcyRcS4',
+        },
+        prep: {
+            imgur: 'foCgyNn',
+            giphy: 'o7H9mn7R9SIIE'
+        },
+        shinchan: {
+            imgur: 'Xk0ZolA',
+            giphy: 'nXJpLaJsYJzCE',
+        },
+        stan: {
+            imgur: 'CKrlCmW',
+            giphy: 'l41Ymq0Y7zwgXyrqE',
+        },
+        stitch: {
+            imgur: 'NIciOMQ',
+            giphy: 'yJrdCUHGHXNAI',
+        },
+        unicorn: {
+            imgur: 'UXatwgq',
+            giphy: '3o8dpbSeoqQZNvjANq',
+        },
+        wendy: {
+            imgur: 'T1ZfnWb',
+            giphy: 'opYVtq9cLliE0',
         }
     },
     /* Retrieve the Imgur url for the given dancer's thumbnail image */
