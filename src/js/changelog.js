@@ -108,13 +108,13 @@ gdpChangeLog = {
             "date": "June 2, 2016",
             "description" : [
                 "You can now add a custom song from YouTube by providing a normal YouTube url " +
-                    "(i.e. https://www.youtube.com/watch?v=npjF032TDDQ) in the 'Add a custom song '" +
-                    "URL or YouTube link.' input field when selecting a song. In order to comply with " +
+                    "(i.e. https://www.youtube.com/watch?v=npjF032TDDQ) in the 'Add a custom song " +
+                    "URL or YouTube link' input field when selecting a song. In order to comply with " +
                     "YouTube's terms of service, the video itself will be displayed next to the other " +
                     "menu buttons.",
                 "You can now also add a custom gif dancer by providing a normal Giphy url " +
                     "(i.e. http://giphy.com/gifs/texas-taco-tacos-xT4uQulxzV39haRFjG) in the " +
-                    "'Add a custom gif url' input field when adding a dancer.",
+                    "'Add a custom GIF URL' input field when adding a dancer.",
                 "Added the song from http://www.breadfish.co.uk to the song list (BREADFISH).",
                 "Added several more gif dancers to the list."
             ]

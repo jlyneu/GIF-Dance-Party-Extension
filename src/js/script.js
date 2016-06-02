@@ -474,7 +474,7 @@ function createSelectSongMenu() {
 
         var addSongInterface = ["<div id='gdp-add-song-wrapper' class='gdp-add-custom-wrapper'>",
                                     "<input type='text' align='left' ",
-                                        "placeholder='Add a custom song URL or YouTube link.' id='gdp-add-song-url-input' ",
+                                        "placeholder='Add a custom song URL or YouTube link' id='gdp-add-song-url-input' ",
                                         "class='gdp-add-custom-input' />" +
                                     "<input type='text' align='left' ",
                                         "placeholder='Add a custom song name' id='gdp-add-song-name-input' ",
