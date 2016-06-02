@@ -105,7 +105,7 @@ gdpChangeLog = {
     /* Updates to be displayed to the user in the change log dialog */
     updates: [
         {
-            "date": "June 1, 2016",
+            "date": "June 2, 2016",
             "description" : [
                 "You can now add a custom song from YouTube by providing a normal YouTube url " +
                     "(i.e. https://www.youtube.com/watch?v=npjF032TDDQ) in the 'Add a custom song '" +
