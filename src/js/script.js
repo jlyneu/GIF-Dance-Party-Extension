@@ -160,7 +160,7 @@ function createMainMenu() {
 
     $('.gdp-harlem-shake').click(function() {
         // clear change log dialog if it is still open
-        gdpChangeLog.closeChangeLog();
+        // gdpChangeLog.closeChangeLog();
         if (!gdpHarlemShake.isShaking) {
             // DO THE HARLEM SHAKE [harlemshake.js]
             stopYoutube(); //stop any playing youtube video
@@ -171,13 +171,13 @@ function createMainMenu() {
     // set a click listener for the "ADD DANCER" menu option
     $('.gdp-add-dancer').click(function() {
         // clear change log dialog if it is still open
-        gdpChangeLog.closeChangeLog();
+        // gdpChangeLog.closeChangeLog();
         createAddDancerMenu();
     });
     // set a click listener for the "SELECT SONG" menu option
     $('.gdp-select-song').click(function() {
         // clear change log dialog if it is still open
-        gdpChangeLog.closeChangeLog();
+        // gdpChangeLog.closeChangeLog();
         createSelectSongMenu();
     });
 }
@@ -578,7 +578,7 @@ function isPartyOn() {
 /* Append the main menu to the screen, start the music, and append the default
 GIF dancers to the screen */
 function startTheParty() {
-    gdpChangeLog.checkForUpdates();
+    // gdpChangeLog.checkForUpdates();
     createMainMenu();
     gdpMedia.selectSong('singalong');
     createGIFDancer('pumpgirl');
@@ -589,7 +589,7 @@ function startTheParty() {
 DANCER menu, and SELECT SONG menu */
 function stopTheParty() {
     // clear change log dialog if it is still open
-    gdpChangeLog.closeChangeLog();
+    // gdpChangeLog.closeChangeLog();
     // clean up Harlem Shake if it's happening
     gdpHarlemShake.isShaking = false;
     $('.gdpAnimated').removeClass("gdpAnimated animated infinite " + animations.join(' '));
