@@ -144,6 +144,8 @@
     position: fixed;
 }
 .gdp-giphy-search-dialog {
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px #666666;
     margin: 30px auto 0 auto;
     max-width: 600px;
 }
