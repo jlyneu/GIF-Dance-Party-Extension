@@ -17,6 +17,23 @@ var frontZIndex = maxZIndex - 500;
 var backZIndex = frontZIndex - 1;
 
 /******************************************************************************
+ * SEARCH VARIABLES
+ *****************************************************************************/
+
+/** Variables that help keep the state of the Giphy search consistent */
+// Number of Giphy stickers to retrieve per search request
+var giphySearchLimit = 25;
+// Determines whether to load more stickers when the user scrolls to the bottom
+// of the search results
+var giphyLoadMore = true;
+// Determines whether there is currently a search for more stickers
+var giphyIsSearching = false;
+// Determines the offset to send with the request when looking for more stickers
+var giphySearchOffset = 0;
+// Determines the number of search requests made to help match requests with responses
+var giphySearchNumber = 0;
+
+/******************************************************************************
 * DANCER CREATION
 *****************************************************************************/
 
@@ -149,6 +166,7 @@ function createMainMenu() {
         '<div class="gdp-main-menu">',
             '<div class="gdp-ytplayer"></div>',
             '<div class="gdp-harlem-shake gdp-main-menu-btn">SHAKE</div>',
+            '<div class="gdp-giphy-search gdp-main-menu-btn">SEARCH</div>',
             '<div class="gdp-add-dancer gdp-main-menu-btn">ADD DANCER</div>',
             '<div class="gdp-select-song gdp-main-menu-btn">SELECT SONG</div>',
         '</div>'
@@ -157,6 +175,11 @@ function createMainMenu() {
     // append the menu to the screen
     $('body').append(menuHtml);
     $('.gdp-main-menu').css('z-index', maxZIndex);
+
+    // FIXME: REMOVE
+    $('.gdp-giphy-search').click(function() {
+        createGiphySearchMenu();
+    })
 
     $('.gdp-harlem-shake').click(function() {
         // clear change log dialog if it is still open
@@ -357,6 +380,145 @@ function addGiphy(){
     } else {
         alert("Please provide a Giphy URL or a .gif URL.");
     }
+}
+
+// ---------------------- create the Giphy search menu ---------------------- //
+
+// Create the interface that allows users to search for stickers from Giphy
+// using the Giphy API. When users begin typing in the search box, results
+// from Giphy will appear below. Clicking on a search result will add a
+// GIF Dancer of that result, and will also save the result to the dancer list.
+function createGiphySearchMenu() {
+
+    // transparent full screen div that contains the list of thumbnails, but
+    // will close on click
+    var gdpGiphySearchBackground = $('<div class="gdp-menu"></div>')
+        .css('z-index', maxZIndex)
+        .click(function() {
+            // close the menu if the user is not clicking the on the input
+            // for typing in a search
+            if (!$(".gdp-giphy-search-dialog-input").is(":focus")) {
+                $(this).remove();
+            }
+            $(this).remove();
+        });
+
+    // HTML for the search interface
+    var gdpGiphySearchDialog = [
+        '<div class="gdp-giphy-search-dialog">',
+            '<div class="gdp-giphy-search-dialog-header">GIPHY SEARCH</div>',
+            '<input class="gdp-giphy-search-dialog-input" placeholder="Start typing to search"/>',
+            '<div class="gdp-giphy-search-dialog-results"></div>',
+            '<div class="gdp-giphy-search-dialog-back">BACK</div>',
+        '</div>',
+        '<img src="https://jlyneu.github.io/GIF-Dance-Party-Extension/giphy-logo.gif" class="gdp-giphy-logo"/>',
+    ].join('');
+
+    // place the search interface on top of the other DOM elements, and prevent
+    // the search interface from closing immediately when clicking on it
+    gdpGiphySearchDialog = $(gdpGiphySearchDialog)
+        .css('z-index', maxZIndex)
+        .click(function(event) {
+            event.stopPropagation();
+        });
+
+    // put the dialog on the background, and the background on the body of the page
+    gdpGiphySearchBackground.append(gdpGiphySearchDialog);
+    $('body').append(gdpGiphySearchBackground);
+    // when the user types in the search box, make search requests to the
+    // Giphy API and display the results
+    $('.gdp-giphy-search-dialog-input')
+        .on('input', function() {
+            giphySearchNumber++;
+            // store the current search number to match requests with responses
+            var tempSearchNumber = giphySearchNumber;
+            // reset search offset since this is a new query
+            giphySearchOffset = 0;
+            // by default allow the user to load more stickers when scrolled
+            // to the bottom of the results
+            giphyLoadMore = true;
+
+            var searchTerm = $(this).val();
+            var url = 'https://api.giphy.com/v1/stickers/search?q=' + searchTerm + '&api_key=dc6zaTOxFJmzC';
+            $.get(url, function(response) {
+                // only display the results if this response is for the most
+                // recent request
+                if (giphySearchNumber == tempSearchNumber) {
+                    // clear past results and display the results of the new search
+                    var resultsDiv = $('.gdp-giphy-search-dialog-results').empty();
+                    addGiphySearchResults(response);
+                    // add scroll listener to load more stickers when the user
+                    // reaches the bottom of the results
+                    resultsDiv.on('scroll', function() {
+                        // only load more stickers if scrolled to the bottom,
+                        // there are more stickers to load, and there is
+                        // not currently a search in progress
+                        if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight &&
+                                giphyLoadMore &&
+                                !giphyIsSearching) {
+                            loadMoreGiphy($(this), giphySearchOffset);
+                        }
+                    });
+                }
+            });
+        })
+        .focus();
+    // TODO: have clicking on back return user to add dancer menu
+    $('.gdp-giphy-search-dialog-back')
+        .click(function() {
+            $('.gdp-menu').remove();
+        })
+}
+
+// Append the response from the Giphy search to the results div
+function addGiphySearchResults(response) {
+    var resultsDiv = $('.gdp-giphy-search-dialog-results');
+    // add each result to the div
+    for (var i = 0; i < response.data.length; i++) {
+        var resultThumbnail = $('<img src="' + response.data[i].images.fixed_width.url + '" class="gdp-giphy-search-result"/>')
+            .click(function() {
+                // save the result as a GIF dancer and add the result to the party. then close the menu.
+                var resultUrl = $(this).attr('src');
+                saveGiphy(resultUrl);
+                createGIFDancer("", resultUrl);
+                $('.gdp-menu').remove();
+            })
+        resultsDiv.append(resultThumbnail);
+    }
+}
+
+// Search for more stickers using the current value in the search box
+// and the offset parameter
+function loadMoreGiphy($this) {
+    // increase offset so we don't get duplicate stickers
+    giphySearchOffset += giphySearchLimit;
+    // keep track of current search number since if it is different by the
+    // time the response comes back, the user has changed the search term
+    // and we won't want to display the response of this search
+    var tempSearchNumber = giphySearchNumber;
+    // note that we are currently searching so we don't make additional
+    // 'load more' searches before this one comes back
+    giphyIsSearching = true;
+
+    var searchTerm = $('.gdp-giphy-search-dialog-input').val();
+    var url = 'https://api.giphy.com/v1/stickers/search';
+    url += '?q=' + searchTerm;
+    url += '&api_key=dc6zaTOxFJmzC';
+    url += '&offset=' + giphySearchOffset;
+    url += '&limit=' + giphySearchLimit;
+    $.get(url, function(moreResponse) {
+        // note that we are no longer searching and are free to make more searches
+        giphyIsSearching = false;
+        // if fewer than the search limit are returned, then don't allow
+        // additional 'load more' searches
+        if (moreResponse.data.length < giphySearchLimit) {
+            giphyLoadMore = false;
+        }
+        // display the results if the user hasn't changed the search term
+        if (giphySearchNumber == tempSearchNumber) {
+            addGiphySearchResults(moreResponse);
+        }
+    });
 }
 
 // ---------------------- create the SELECT SONG menu ---------------------- //

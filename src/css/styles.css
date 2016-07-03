@@ -138,6 +138,61 @@
 .gdp-flipped {
     transform: scaleX(-1);
 }
+.gdp-giphy-logo {
+    bottom: 0;
+    left: 0;
+    position: fixed;
+}
+.gdp-giphy-search-dialog {
+    margin-top: 30px;
+    max-width: 600px;
+}
+.gdp-giphy-search-dialog-back {
+    background-color: #FFC107;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-sizing: initial;
+    color: white;
+    cursor: pointer;
+    font-family: "Hammersmith One", "Trebuchet MS" !important;
+    font-size: 20px;
+    height: 30px;
+    padding-top: 10px;
+}
+.gdp-giphy-search-dialog-header {
+    background-color: #FFC107;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    box-sizing: initial;
+    color: white;
+    font-family: "Hammersmith One", "Trebuchet MS" !important;
+    font-size: 20px;
+    height: 30px;
+    padding-top: 10px;
+}
+.gdp-giphy-search-dialog-input {
+    box-sizing: initial;
+    font-family: "Hammersmith One", "Trebuchet MS" !important;
+    height: 20px;
+    padding: 0 10px;
+    width: 576px;
+}
+.gdp-giphy-search-dialog-results {
+    background-color: #EEEEEE;
+    box-sizing: initial;
+    color: #666666;
+    display: block;
+    font-family: "Hammersmith One", "Trebuchet MS" !important;
+    height: 300px;
+    overflow-x: scroll;
+    padding: 30px;
+    text-align: left;
+}
+.gdp-giphy-search-result {
+    cursor: pointer;
+    height: 180px;
+    width: 180px;
+}
 .gdp-main-menu {
     bottom: 0;
     color: white;
