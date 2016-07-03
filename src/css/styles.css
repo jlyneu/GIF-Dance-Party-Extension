@@ -144,7 +144,7 @@
     position: fixed;
 }
 .gdp-giphy-search-dialog {
-    margin-top: 30px;
+    margin: 30px auto 0 auto;
     max-width: 600px;
 }
 .gdp-giphy-search-dialog-back {
@@ -158,6 +158,7 @@
     font-size: 20px;
     height: 30px;
     padding-top: 10px;
+    text-align: center;
 }
 .gdp-giphy-search-dialog-header {
     background-color: #FFC107;
@@ -169,6 +170,7 @@
     font-size: 20px;
     height: 30px;
     padding-top: 10px;
+    text-align: center;
 }
 .gdp-giphy-search-dialog-input {
     box-sizing: initial;
